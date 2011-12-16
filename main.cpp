@@ -1,4 +1,5 @@
 #include <iostream>
+#include <boost/lambda/lambda.hpp>
 
 void main(void)
 {
