@@ -30,6 +30,8 @@
 *.exe
 *.pdb
 
+DNSStr.h
+
 debug
 relase
 
