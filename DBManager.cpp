@@ -40,7 +40,7 @@ public:
 		  >> : SQL_PARAM_OUTPUT;
 		*/
 		cols[0] >> row._int(); 
-		cols[1] == row._int();
+		cols[1] == row._int();//∏Æ≈œ
 
 		cols.BindVariantRow(row);
 	}
@@ -55,7 +55,7 @@ void StoredProcReadTestParm() {
 
 
 	// Print out the column names
-	wcout << "column names" << endl;
+	wcout << L"column names" << endl;
 	vector<dtl::tstring> colNames = view.GetColNames();
 	for (vector<dtl::tstring>::iterator name_it = colNames.begin(); name_it !=colNames.end(); ++name_it)
 		wcout << *name_it << L" ";
@@ -84,7 +84,7 @@ void StoredProcReadTestParm() {
 	wcout << L"param 0 = " << r[_T("0")] << endl;
 	wcout << L"param 1 = " << r[L"1"] << endl;
 
-	wcout << endl;
+	cout << endl;
 
 }
 
