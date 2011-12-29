@@ -24,23 +24,33 @@ void TestParmCreate()
 	}
 	catch (std::exception e)
 	{
+		cerr << e.what() << endl;
 	}
 
 	DBStmt(
-		"CREATE PROCEDURE TestParm @OutParm int OUTPUT AS "
-		"SELECT STRING_VALUE FROM db_example "
-		"SELECT @OutParm = 66 "
-		"RETURN 99"
+		"CREATE PROCEDURE TestParm " 
+		"	@OutParm int OUTPUT "
+		"AS "
+		"	SELECT STRING_VALUE FROM db_example "
+		"	SELECT @OutParm = 66 "
+		"	RETURN 99"
 		).Execute();
 
 }
 
+
+//BCA : Bind Column Addresses
 class TestParmBCA {
 public:
 	void operator()(BoundIOs &cols, variant_row &row)
 	{
-		cols["STRING_VALUE"] == row._string();
-		cols[0] >> row._int();
+		cols["STRING_VALUE"] == row._string();//컬럼중 STRING_VALUE 바인드
+		/*
+		  == : SQL_PARAM_INPUT_OUTPUT;
+		  << : SQL_PARAM_INPUT;
+		  >> : SQL_PARAM_OUTPUT;
+		*/
+		cols[0] >> row._int(); 
 		cols[1] == row._int();
 
 		cols.BindVariantRow(row);
@@ -58,8 +68,7 @@ void StoredProcReadTestParm() {
 	// Print out the column names
 	cout << "column names" << endl;
 	vector<string> colNames = view.GetColNames();
-	for (vector<string>::iterator name_it = colNames.begin(); name_it !=
-		colNames.end(); ++name_it)
+	for (vector<string>::iterator name_it = colNames.begin(); name_it !=colNames.end(); ++name_it)
 		cout << (*name_it) << " ";
 	cout << endl;
 
@@ -67,14 +76,14 @@ void StoredProcReadTestParm() {
 	DBView<variant_row>::sql_iterator print_it = view;
 
 	variant_row r(view.GetDataObj());
-	r["0"] = 0;
-	r["1"] = 0;
+	r["0"] = 10;
+	r["1"] = 10;
 
 	*print_it = r; // assign parameters to execute
 
 	for (++print_it; print_it != view.end(); ++print_it)
 	{
-		cout << (variant_row) *print_it << endl;
+		cout << ((variant_row) *print_it)["STRING_VALUE"] << endl;
 	}
 
 	cout << endl;
