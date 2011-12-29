@@ -39,8 +39,8 @@ public:
 		  << : SQL_PARAM_INPUT;
 		  >> : SQL_PARAM_OUTPUT;
 		*/
-		cols[0] >> row._int(); 
-		cols[1] == row._int();//리턴
+		cols[0] >> row._int();//아웃풋값
+		cols[1] == row._int();//리턴값
 
 		cols.BindVariantRow(row);
 	}
