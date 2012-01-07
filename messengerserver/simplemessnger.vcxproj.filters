@@ -56,5 +56,8 @@
     <ClInclude Include="DBManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dtlexam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

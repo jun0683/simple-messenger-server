@@ -157,6 +157,7 @@
     <ClInclude Include="CattingMessagePacket.h" />
     <ClInclude Include="DBManager.h" />
     <ClInclude Include="DNSStr.h" />
+    <ClInclude Include="dtlexam.h" />
     <ClInclude Include="LoginPacket.h" />
     <ClInclude Include="MakeChatingRoomPacket.h" />
     <ClInclude Include="Packet.h" />
