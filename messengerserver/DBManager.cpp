@@ -1,12 +1,6 @@
+#include "StdAfx.h"
 #include "DBManager.h"
-#include "DNSStr.h"
-#include "dtlexam.h"
-#include <DTL.h>
-#include <boost/chrono.hpp>
-
-using namespace dtl;
-using namespace std;
-
+#include "UserInfo.h"
 
 void TestParmCreate() 
 {
@@ -126,7 +120,6 @@ CDBManager::CDBManager(void)
 
 CDBManager::~CDBManager(void)
 {
-
 }
 
 
@@ -142,17 +135,39 @@ void CDBManager::dbLogin(void)
 
 		StoredProcReadTestParm();
 	}
-	boost::chrono::system_clock::time_point EndTime = boost::chrono::system_clock::now();
+	/*boost::chrono::system_clock::time_point EndTime = boost::chrono::system_clock::now();
 	boost::chrono::duration<double> DefaultSec = EndTime - StartTime;
 	boost::chrono::milliseconds mill = boost::chrono::duration_cast<boost::chrono::milliseconds>(EndTime - StartTime);
 	std::cout << "Test() 함수를 수행하는 걸린 시간 : " << DefaultSec.count() << " default" << std::endl;
-	std::cout << "Test() 함수를 수행하는 걸린 시간 : " << mill.count() << " milliseconds" << std::endl;
+	std::cout << "Test() 함수를 수행하는 걸린 시간 : " << mill.count() << " milliseconds" << std::endl;*/
 
-	SharedConnectionRead(DNSSTR);
+	//SharedConnectionRead(DNSSTR);
 
-
+	std::cout << "login test" << std::endl;
+	std::cout << "userid :" << login(L"test@test.com",L"1234") <<std::endl;
 
 	DBConnection::GetDefaultConnection().Release();
 
 
+}
+
+int CDBManager::login( tstring loginID, tstring pw )
+{
+	try
+	{
+		DBView<CUserInfo,ParamUserInfo> view(L"{? = call login(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
+		DBView<CUserInfo, ParamUserInfo>::sql_iterator print_it = view;
+		print_it.Params().loginID = loginID;
+		print_it.Params().pw = pw;
+		*print_it = CUserInfo(); // force the statement to execute 
+		++print_it;
+
+		return print_it->userID;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << "Exception: " << e.what() << "\n";
+	}
+
+	
 }

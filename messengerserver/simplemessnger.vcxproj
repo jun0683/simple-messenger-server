@@ -82,8 +82,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;DTL_UC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -152,6 +151,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MakeChatingRoomPacket.cpp" />
     <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="UserInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CattingMessagePacket.h" />
@@ -161,7 +162,8 @@
     <ClInclude Include="LoginPacket.h" />
     <ClInclude Include="MakeChatingRoomPacket.h" />
     <ClInclude Include="Packet.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="UserInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
