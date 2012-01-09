@@ -152,6 +152,7 @@
     <ClCompile Include="MakeChatingRoomPacket.cpp" />
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UserInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="MakeChatingRoomPacket.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="UserInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
