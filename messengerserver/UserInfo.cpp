@@ -6,6 +6,11 @@ CUserInfo::CUserInfo(void)
 {
 }
 
+CUserInfo::CUserInfo(int _userID,tstring _loginID,tstring _pw,tstring _userName)
+	:userID(_userID),loginID(_loginID),pw(_pw),userName(_userName)
+{
+	
+}
 
 CUserInfo::~CUserInfo(void)
 {

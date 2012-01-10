@@ -46,12 +46,32 @@ bool CDBManager::userLogout(int userID)
 
 bool CDBManager::userLog(int userID,bool state)
 {
-	DBView<EmptyDataObj, UserLog> view(L"{call insertLog(?,?,?)}", EmptyBCA(),L"",UserLogBPA());
-	DBView<EmptyDataObj, UserLog>::sql_iterator print_it = view;
+	DBView<EmptyDataObj, ParamUserLog> view(L"{call insertLog(?,?,?)}", EmptyBCA(),L"",UserLogBPA());
+	DBView<EmptyDataObj, ParamUserLog>::sql_iterator print_it = view;
 	print_it.Params().userID = userID;
-	print_it.Params().logstate = state;
+	print_it.Params().logState = state;
 	*print_it = EmptyDataObj();
 	print_it.MoreResults();
 	
-	return print_it.Params().logresult;
+	return print_it.Params().logResult;
+}
+
+userinfos_ptr CDBManager::userFriends(int userID)
+{
+	DBView<CUserInfo, ParamUserFriend> view(L"{call friends(?)}", UserInfoBCA(),L"",UserFriendBPA());
+	DBView<CUserInfo, ParamUserFriend>::sql_iterator print_it = view;
+
+	print_it.Params().userID = userID;
+	*print_it = CUserInfo();
+
+	userinfos_ptr friends (new userInfos);
+
+	for (; print_it != view.end(); ++print_it)
+
+	{
+		userInfo_ptr user (new CUserInfo(*print_it));
+		friends->push_back(user);
+	}
+
+	return friends;
 }

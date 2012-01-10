@@ -4,13 +4,17 @@ class CUserInfo
 {
 public:
 	int userID;
-	string loginID;    
-	string pw;
-	string userName;
+	tstring loginID;    
+	tstring pw;
+	tstring userName;
 public:
 	CUserInfo(void);
+	CUserInfo(int userID,tstring loginID,tstring pw,tstring userName);
 	~CUserInfo(void);
 };
+typedef shared_ptr<CUserInfo> userInfo_ptr;
+typedef vector<userInfo_ptr> userInfos;
+typedef shared_ptr<userInfos> userinfos_ptr;
 
 class UserInfoBCA //BCA : Bind Column Addresses
 {
@@ -22,7 +26,6 @@ public:
 		cols[L"pw"]		>> row.pw;
 		cols[L"userName"]	>> row.userName;
 	}
-
 };
 
 class EmptyDataObj
@@ -57,22 +60,38 @@ public:
 	}
 };
 
-class UserLog
+class ParamUserLog
 {
 public:
 	int userID;
-	bool logstate;
-	bool logresult;
+	bool logState;
+	bool logResult;
 };
 
 class UserLogBPA 
 {
 public:
-	void operator()(BoundIOs &params, UserLog &paramObj)
+	void operator()(BoundIOs &params, ParamUserLog &paramObj)
 	{
 		params[0] << paramObj.userID;
-		params[1] << paramObj.logstate;
-		params[2] >> paramObj.logresult;
+		params[1] << paramObj.logState;
+		params[2] >> paramObj.logResult;
 
+	}
+};
+
+class ParamUserFriend
+{
+public:
+	int userID;
+};
+
+
+class UserFriendBPA 
+{
+public:
+	void operator()(BoundIOs &params, ParamUserFriend &paramObj)
+	{
+		params[0] << paramObj.userID;
 	}
 };
