@@ -43,9 +43,32 @@ class UserLoginStateBCA
 public:
 	void operator()(BoundIOs &cols, variant_row &row)	
 	{
-		cols[0] >> row._int(); //return 
-		cols[1] << row._int();
+		cols[0] >> row._int(); //return
+		cols[1] << row._int(); //userid
 		cols.BindVariantRow(row);
+	}
+};
+
+class ChattingRoomMakeBCA
+{
+public:
+	void operator()(BoundIOs &cols, variant_row &row)	
+	{
+		cols[0] >> row._int(); //return
+		cols[1] << row._int(); // userID
+		cols.BindVariantRow(row);
+	}
+};
+
+
+class ChattingRoomStateBPA
+{
+public:
+	void operator()(BoundIOs &params,variant_row &paramobj )
+	{
+		params[0] << paramobj._int();
+		params[1] << paramobj._int();
+		params[2] << paramobj._bool();
 	}
 };
 
@@ -106,3 +129,4 @@ public:
 		params[0] << paramObj.userID;
 	}	
 };
+

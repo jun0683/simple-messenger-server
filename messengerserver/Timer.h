@@ -12,3 +12,15 @@ public:
 	void endTimer(void);
 };
 
+class FuctionTimer : public CTimer
+{
+public:
+	FuctionTimer()
+	{
+		startTimer();
+	}
+	~FuctionTimer()
+	{
+		endTimer();
+	}
+};

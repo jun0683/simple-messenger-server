@@ -14,6 +14,8 @@ CTimer::~CTimer(void)
 
 void CTimer::startTimer(void)
 {
+	cout << endl;
+	cout << "함수 시작" << endl;
 	StartTime = boost::chrono::system_clock::now();
 }
 
