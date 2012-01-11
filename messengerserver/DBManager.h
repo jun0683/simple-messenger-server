@@ -13,6 +13,7 @@ public:
 	bool			userLogin(int userID);
 	bool			userLogout(int userID);
 	bool			userLog(int userID,bool state);
+	bool			isUserLogin(int userID);
 	userinfos_ptr	userFriends(int userID);
 };
 

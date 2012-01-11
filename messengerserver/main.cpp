@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 		testuserInfo(dbmanager);
 		testlogginLog(dbmanager);
 		testUserFriends(dbmanager);
+		testUserFriendsLoginState(dbmanager);
 		
 	}
 	catch(std::exception e)

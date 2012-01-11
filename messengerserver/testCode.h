@@ -31,8 +31,23 @@ void testUserFriends(CDBManager &dbmanager)
 	cout << "user " << 1 << " friends" << endl;
 	std::for_each(friens->begin(),friens->end(),[=](userInfo_ptr userinfo)
 	{
-		wcout << userinfo->userID << L" " << userinfo->loginID << L" " << endl;
+		wcout << userinfo->userID << L" " << userinfo->loginID << L" " << userinfo->pw << L" " << userinfo->userName  << endl;
 	});
 
 	timer.endTimer();
+}
+
+void testUserFriendsLoginState(CDBManager &dbmanager)
+{
+	userinfos_ptr friens = dbmanager.userFriends(1);
+	CTimer timer;
+	timer.startTimer();
+	cout << "user " << 1 << " friends" << endl;
+	std::for_each(friens->begin(),friens->end(),[=,&dbmanager](userInfo_ptr userinfo)
+	{
+		bool loginstate = dbmanager.isUserLogin(userinfo->userID);
+		wcout << userinfo->userID << L"login state : " << loginstate << endl;
+	});
+	timer.endTimer();
+
 }

@@ -35,7 +35,18 @@ class EmptyDataObj
 class EmptyBCA
 {
 public:
-	void operator()(BoundIOs &boundIOs, EmptyDataObj &rowbuf)	{}
+	void operator()(BoundIOs &cols, EmptyDataObj &rowbuf)	{}
+};
+
+class UserLoginStateBCA
+{
+public:
+	void operator()(BoundIOs &cols, variant_row &row)	
+	{
+		cols[0] >> row._int(); //return 
+		cols[1] << row._int();
+		cols.BindVariantRow(row);
+	}
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -80,18 +91,18 @@ public:
 	}
 };
 
-class ParamUserFriend
+class ParamUserID
 {
 public:
 	int userID;
 };
 
 
-class UserFriendBPA 
+class UserIDBPA 
 {
 public:
-	void operator()(BoundIOs &params, ParamUserFriend &paramObj)
+	void operator()(BoundIOs &params, ParamUserID &paramObj)
 	{
 		params[0] << paramObj.userID;
-	}
+	}	
 };
