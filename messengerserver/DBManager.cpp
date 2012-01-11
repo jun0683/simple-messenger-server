@@ -101,26 +101,25 @@ int CDBManager::makeChattingRoom( int userID, vector<int> friendIDs)
 	return r[L"0"];
 }
 
-bool CDBManager::inviteCattingRoom( int roomNumber, int inviteUserID )
+bool CDBManager::inviteChattingRoom( int roomNumber, int inviteUserID )
 {
-	CattingRoomState(roomNumber,inviteUserID,1);
-
-	return true;
+	return ChattingRoomState(roomNumber,inviteUserID,true);;
 }
 
-bool CDBManager::CattingRoomState(int roomNumber, int UserID,bool state)
+bool CDBManager::leaveChattingRoom( int roomNumber, int leaveUserID )
 {
-	DBView<variant_row> view(L"{call inviteChattingRoom(?,?,?)}", ChattingRoomMakeBCA());
+
+	return ChattingRoomState(roomNumber,leaveUserID,false);
+}
+
+bool CDBManager::ChattingRoomState(int roomNumber, int UserID,bool state)
+{
+	DBView<variant_row> view(L"{call insertChattingRoomState(?,?,?)}", ChattingRoomStateBPA());
 	DBView<variant_row>::sql_iterator print_it = view;
 	variant_row r(view.GetDataObj());
 	r[L"0"] = roomNumber;
 	r[L"1"] = UserID;
 	r[L"2"] = state;
 	*print_it = r;
-	print_it.MoreResults();
-	r = *print_it;
-	return r[L"0"];
-
-
 	return true;
 }

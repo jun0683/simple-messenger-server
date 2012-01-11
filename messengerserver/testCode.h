@@ -69,8 +69,6 @@ void testCreatechattingRoom(CDBManager &dbmanager)
 
 	BOOST_FOREACH(int userid,friendsIDs)
 	{
-		dbmanager.inviteCattingRoom(testUserID,userid);
+		dbmanager.inviteChattingRoom(chattingroomnumber,userid);
 	}
-	
-
 }

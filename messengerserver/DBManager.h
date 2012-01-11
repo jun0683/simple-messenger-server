@@ -15,8 +15,9 @@ public:
 	bool			userLog(int userID,bool state);
 	bool			isUserLogin(int userID);
 	int			makeChattingRoom(int userID,vector<int> friendIDs);
-	bool			inviteCattingRoom(int roomNumber, int invitUserID);
-	bool			CattingRoomState(int roomNumber, int UserID,bool state);
+	bool			inviteChattingRoom(int roomNumber, int invitUserID);
+	bool			leaveChattingRoom(int roomNumber, int invitUserID);
+	bool			ChattingRoomState(int roomNumber, int UserID,bool state);
 	userinfos_ptr	userFriends(int userID);
 };
 

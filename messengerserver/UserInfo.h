@@ -64,11 +64,12 @@ public:
 class ChattingRoomStateBPA
 {
 public:
-	void operator()(BoundIOs &params,variant_row &paramobj )
+	void operator()(BoundIOs &cols,variant_row &row )
 	{
-		params[0] << paramobj._int();
-		params[1] << paramobj._int();
-		params[2] << paramobj._bool();
+		cols[0] << row._int(); //roomnumber
+		cols[1] << row._int(); //userid
+		cols[2] << row._bool();//state
+		cols.BindVariantRow(row);
 	}
 };
 
