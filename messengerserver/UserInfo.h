@@ -73,6 +73,17 @@ public:
 	}
 };
 
+class ChattingMessageBPA
+{
+public:
+	void operator()(BoundIOs &cols,variant_row &row )
+	{
+		cols[0] << row._int(); //roomnumber
+		cols[1] << row._int(); //userid
+		cols[2] << row._tstring();//state
+		cols.BindVariantRow(row);
+	}
+};
 //////////////////////////////////////////////////////////////////////////
 /// BPA
 /// Bind Params Addresses

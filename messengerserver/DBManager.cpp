@@ -123,3 +123,16 @@ bool CDBManager::ChattingRoomState(int roomNumber, int UserID,bool state)
 	*print_it = r;
 	return true;
 }
+
+bool CDBManager::sendChattingMessage(int roomNumber,int UserID,tstring &chattingMessage)
+{
+	
+	DBView<variant_row> view(L"{call sendChattingMessage(?,?,?)}", ChattingMessageBPA());
+	DBView<variant_row>::sql_iterator print_it = view;
+	variant_row r(view.GetDataObj());
+	r[L"0"] = roomNumber;
+	r[L"1"] = UserID;
+	r[L"2"] = chattingMessage;
+	*print_it = r;
+	return true;
+}

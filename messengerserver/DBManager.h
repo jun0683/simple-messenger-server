@@ -19,5 +19,6 @@ public:
 	bool			leaveChattingRoom(int roomNumber, int invitUserID);
 	bool			ChattingRoomState(int roomNumber, int UserID,bool state);
 	userinfos_ptr	userFriends(int userID);
+	bool			sendChattingMessage(int roomNumber,int UserID,tstring &chattingMessage);
 };
 

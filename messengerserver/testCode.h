@@ -70,5 +70,15 @@ void testCreatechattingRoom(CDBManager &dbmanager)
 	BOOST_FOREACH(int userid,friendsIDs)
 	{
 		dbmanager.inviteChattingRoom(chattingroomnumber,userid);
+		dbmanager.leaveChattingRoom(chattingroomnumber,userid);
 	}
+}
+
+void testSendChattingMessage(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	int testUserID1 = 1,testUserID2 = 6;
+	int roomNumber = 1;
+	tstring chattingmessage = L"¹Ý°©½À´Ï´ç";
+	dbmanager.sendChattingMessage(roomNumber,testUserID1,chattingmessage);
 }

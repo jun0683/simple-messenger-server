@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 		testUserFriends(dbmanager);
 		testUserFriendsLoginState(dbmanager);
 		testCreatechattingRoom(dbmanager);
+		testSendChattingMessage(dbmanager);
 	}
 	catch(std::exception e)
 	{
