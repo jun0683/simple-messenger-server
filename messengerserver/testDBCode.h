@@ -1,17 +1,15 @@
 
 void testuserInfo(CDBManager &dbmanager)
 {
-	CTimer timer;
-	timer.startTimer();
+	FuctionTimer timer;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test1@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test3@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test4@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test5@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test10@test.com",L"1234").userID <<std::endl;
-	if(InvalidUser == dbmanager.getUserInfo(L"test10@test.com",L"1234").userID)
+	if(-1 == dbmanager.getUserInfo(L"test10@test.com",L"1234").userID)
 		tcout << "없는 유저입니다." << endl;
-	timer.endTimer();
 }
 
 void testUserLogState(CDBManager &dbmanager)

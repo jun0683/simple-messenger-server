@@ -25,6 +25,28 @@ void CDBManager::dbLogin(void)
 
 CUserInfo CDBManager::getUserInfo( tstring loginID, tstring pw )
 {
+	/*
+	SELECT @err = @@ERROR;
+	IF @err != 0
+	BEGIN
+	PRINT  '###' + @name + '을(를) INSERT에실패했습니다. ###'
+	END;
+
+	RETURN @err; -- 오류번호를 돌려줌.
+
+	BEGIN TRY 
+	INSERT INTO 
+	userTbl(userID,name,birthYear,addr,mobile1,mobile2,height)
+	VALUES (@userid, @name, @birthYear, @addr,	@mobile1, 
+	@mobile2,	@height)
+	END TRY
+
+	BEGIN CATCH
+	SELECT ERROR_NUMBER()
+	SELECT ERROR_MESSAGE()
+	END CATCH
+
+	*/
 	DBView<CUserInfo,ParamUserInfo> view(L"{call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
 	DBView<CUserInfo, ParamUserInfo>::sql_iterator print_it = view;
 	print_it.Params().loginID = loginID;
