@@ -164,7 +164,7 @@
     <ClInclude Include="MakeChatingRoomPacket.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="testCode.h" />
+    <ClInclude Include="testDBCode.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserInfo.h" />
   </ItemGroup>

@@ -74,7 +74,7 @@
     <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testCode.h">
+    <ClInclude Include="testDBCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
