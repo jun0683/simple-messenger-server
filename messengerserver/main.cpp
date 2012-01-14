@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 		CDBManager dbmanager;
 		dbmanager.dbLogin();
 		testuserInfo(dbmanager);
-		testlogginLog(dbmanager);
+		testUserLogState(dbmanager);
 		testUserFriends(dbmanager);
 		testUserFriendsLoginState(dbmanager);
 		testCreatechattingRoom(dbmanager);

@@ -7,7 +7,7 @@
 #include <boost/lexical_cast.hpp>
 #include "dtlexam.h"
 #include "DNSStr.h"
-
+#include "MessengerErorrCode.h"
 
 using namespace dtl;
 using namespace std;

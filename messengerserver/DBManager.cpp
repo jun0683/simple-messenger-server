@@ -136,3 +136,18 @@ bool CDBManager::sendChattingMessage(int roomNumber,int UserID,tstring &chatting
 	*print_it = r;
 	return true;
 }
+
+
+bool CDBManager::registerNewUser( tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName )
+{
+	DBView<variant_row> view(L"{? = call registerNewUser(?,?)}", RegisterUserBPA());
+	DBView<variant_row>::sql_iterator print_it = view;
+	variant_row r(view.GetDataObj());
+	r[L"0"] = 1;
+	r[L"1"] = NewUserLoginID;
+	r[L"2"] = NewUserName;
+	*print_it = r;
+	print_it.MoreResults();
+	r = *print_it;
+	return r[L"0"];
+}

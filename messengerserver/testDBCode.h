@@ -8,10 +8,13 @@ void testuserInfo(CDBManager &dbmanager)
 	tcout << "userid : " << dbmanager.getUserInfo(L"test3@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test4@test.com",L"1234").userID <<std::endl;
 	tcout << "userid : " << dbmanager.getUserInfo(L"test5@test.com",L"1234").userID <<std::endl;
+	tcout << "userid : " << dbmanager.getUserInfo(L"test10@test.com",L"1234").userID <<std::endl;
+	if(InvalidUser == dbmanager.getUserInfo(L"test10@test.com",L"1234").userID)
+		tcout << "없는 유저입니다." << endl;
 	timer.endTimer();
 }
 
-void testlogginLog(CDBManager &dbmanager)
+void testUserLogState(CDBManager &dbmanager)
 {
 	CUserInfo user = dbmanager.getUserInfo(L"test@test.com",L"1234");
 	CTimer timer;
@@ -81,4 +84,24 @@ void testSendChattingMessage(CDBManager &dbmanager)
 	int roomNumber = 1;
 	tstring chattingmessage = L"반갑습니당";
 	dbmanager.sendChattingMessage(roomNumber,testUserID1,chattingmessage);
+}
+
+void testRegistNewUser(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test1@test.com";
+	tstring testUserLoginPw = L"test";
+	tstring testUserName;
+
+	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
+	{
+		tcout << L"성공" << endl;
+	}
+	else
+		tcout << L"실패" << endl;
+}
+
+void testChageUserPw(CDBManager &dbmanager)
+{
+
 }

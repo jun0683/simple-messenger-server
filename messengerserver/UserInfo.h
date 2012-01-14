@@ -84,6 +84,19 @@ public:
 		cols.BindVariantRow(row);
 	}
 };
+
+class RegisterUserBPA
+{
+public:
+	void operator()(BoundIOs &cols,variant_row &row )
+	{
+		cols[0] >> row._int(); //return
+		cols[1] << row._tstring(); //userloginid
+		cols[2] << row._tstring(); //userloginpw
+		cols.BindVariantRow(row);
+	}
+};
+
 //////////////////////////////////////////////////////////////////////////
 /// BPA
 /// Bind Params Addresses
