@@ -61,7 +61,7 @@ public:
 };
 
 
-class ChattingRoomStateBPA
+class ChattingRoomStateBCA
 {
 public:
 	void operator()(BoundIOs &cols,variant_row &row )
@@ -73,7 +73,7 @@ public:
 	}
 };
 
-class ChattingMessageBPA
+class ChattingMessageBCA
 {
 public:
 	void operator()(BoundIOs &cols,variant_row &row )
