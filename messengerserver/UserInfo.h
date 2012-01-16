@@ -85,7 +85,7 @@ public:
 	}
 };
 
-class RegisterUserBPA
+class RegisterUserBCA
 {
 public:
 	void operator()(BoundIOs &cols,variant_row &row )
@@ -155,3 +155,24 @@ public:
 	}	
 };
 
+
+class NewUserObj
+{
+public:
+	int returnvalue;
+	tstring userloginID;
+	tstring userloginPW;
+	tstring userName;
+};
+
+class RegisterUserBPA
+{
+public:
+	void operator()(BoundIOs &params,NewUserObj &paramObj )
+	{
+		params[0] >> paramObj.returnvalue; //return
+		params[1] << paramObj.userloginID; //userloginid
+		params[2] << paramObj.userloginPW; //userloginpw
+		params[3] << paramObj.userName;
+	}
+};

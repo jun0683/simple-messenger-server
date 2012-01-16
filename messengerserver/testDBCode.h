@@ -43,11 +43,11 @@ void testUserFriendsLoginState(CDBManager &dbmanager)
 	userinfos_ptr friends = dbmanager.userFriends(1);
 	CTimer timer;
 	timer.startTimer();
-	cout << "user " << 1 << " friends" << endl;
+	tcout << "user " << 1 << " friends" << endl;
 	std::for_each(friends->begin(),friends->end(),[=,&dbmanager](userInfo_ptr userinfo)
 	{
 		bool loginstate = dbmanager.isUserLogin(userinfo->userID);
-		tcout << userinfo->userID << L"login state : " << loginstate << endl;
+		tcout << userinfo->userID << "login state : " << loginstate << endl;
 	});
 	timer.endTimer();
 
@@ -66,7 +66,7 @@ void testCreatechattingRoom(CDBManager &dbmanager)
 	});
 	
 	int chattingroomnumber = dbmanager.makeChattingRoom(testUserID,friendsIDs);
-	tcout<< L"채팅방 번호 :" << chattingroomnumber << endl;
+	tcout<< "채팅방 번호 :" << chattingroomnumber << endl;
 
 	BOOST_FOREACH(int userid,friendsIDs)
 	{
@@ -93,10 +93,10 @@ void testRegistNewUser(CDBManager &dbmanager)
 
 	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
 	{
-		tcout << L"성공" << endl;
+		tcout << "실패" << endl;
 	}
 	else
-		tcout << L"실패" << endl;
+		tcout << L"성공" << endl;
 }
 
 void testChageUserPw(CDBManager &dbmanager)
