@@ -20,10 +20,9 @@ int main(int argc, char* argv[])
 		testSendChattingMessage(dbmanager);
 		testRegistNewUser(dbmanager);
 	}
-	catch(std::exception e)
+	catch(std::exception &e)
 	{
 		std::cerr << e.what() << endl;
 	}
-	
 	return 0;
 }

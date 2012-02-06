@@ -35,7 +35,10 @@ class EmptyDataObj
 class EmptyBCA
 {
 public:
-	void operator()(BoundIOs &cols, EmptyDataObj &rowbuf)	{}
+	void operator()(BoundIOs &cols, EmptyDataObj &row)	
+	{
+		//cols.BindAsBase(row);
+	}
 };
 
 class UserLoginStateBCA
@@ -168,11 +171,49 @@ public:
 class RegisterUserBPA
 {
 public:
-	void operator()(BoundIOs &params,NewUserObj &paramObj )
+	void operator()(BoundIOs &cols,NewUserObj &params )
 	{
-		params[0] >> paramObj.returnvalue; //return
-		params[1] << paramObj.userloginID; //userloginid
-		params[2] << paramObj.userloginPW; //userloginpw
-		params[3] << paramObj.userName;
+		cols[0] >> params.returnvalue; //return
+		cols[1] << params.userloginID; //userloginid
+		cols[2] << params.userloginPW; //userloginpw
+		cols[3] << params.userName;
 	}
 };
+
+
+
+//////////////////////////////////////////////////////////////////////////
+/// testcode
+//////////////////////////////////////////////////////////////////////////
+
+class ProcOutBCA
+{
+public:
+	void operator()(BoundIOs &boundIOs, EmptyDataObj &rowbuf)
+	{
+
+	}
+};
+
+class ProcOutParams {
+public:
+	long long_criteria;
+	int numRecords;
+
+	/*friend ostream &operator<<(ostream &o, const ProcOutParams &params)
+	{
+		cout << "ProcOutParams(" << params.long_criteria << ", " << params.numRecords << ")";
+		return o;
+	}*/
+};
+
+class ProcOutBPA {
+public:
+	void operator()(BoundIOs &cols, ProcOutParams &params)
+	{
+		cols[0] >> params.numRecords;
+		cols[1] << params.long_criteria;
+		
+	}
+};
+

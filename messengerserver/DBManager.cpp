@@ -162,12 +162,16 @@ bool CDBManager::sendChattingMessage(int roomNumber,int UserID,tstring &chatting
 
 bool CDBManager::registerNewUser( tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName )
 {
+	
 	DBView<EmptyDataObj,NewUserObj> view(L"{? = call registerNewUser(?,?,?)}", EmptyBCA(),L"",RegisterUserBPA());
-	DBView<EmptyDataObj,NewUserObj>::sql_iterator print_it = view;
+	DBView<EmptyDataObj,NewUserObj>::sql_iterator print_it = view.begin();
 	print_it.Params().userloginID = NewUserLoginID;
 	print_it.Params().userloginPW = NewUserLoginPW;
 	print_it.Params().userName = NewUserName;
 	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+
 	tcout << "register new user return : " << print_it.Params().returnvalue << endl;
-	return print_it.Params().returnvalue;
+
+	return print_it.Params().returnvalue; 
 }
