@@ -171,7 +171,17 @@ bool CDBManager::registerNewUser( tstring &NewUserLoginID,tstring &NewUserLoginP
 	*print_it = EmptyDataObj();
 	print_it.MoreResults();
 
-	tcout << "register new user return : " << print_it.Params().returnvalue << endl;
-
 	return print_it.Params().returnvalue; 
+}
+
+bool	CDBManager::isValidUser(tstring &NewUserLoginID)
+{
+	DBView<EmptyDataObj,ValidUserObj> view(L"{? = call isValidUser(?)}", EmptyBCA(),L"",ValidUserBPA());
+	DBView<EmptyDataObj,ValidUserObj>::sql_iterator print_it = view.begin();
+	print_it.Params().userloginID = NewUserLoginID;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+
+	return print_it.Params().returnvalue;
+	return 1; //¿÷¿Ω
 }

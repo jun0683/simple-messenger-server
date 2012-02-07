@@ -179,3 +179,20 @@ public:
 		cols[3] << params.userName;
 	}
 };
+
+class validUserObj
+{
+public:
+	int returnvalue;
+	tstring userloginID;
+};
+
+class ValidUserBPA
+{
+public:
+	void operator()(BoundIOs &cols,validUserObj &params )
+	{
+		cols[0] >> params.returnvalue; //return
+		cols[1] << params.userloginID; //userloginid
+	}
+};

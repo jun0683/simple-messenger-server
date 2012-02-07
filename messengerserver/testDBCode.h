@@ -87,7 +87,7 @@ void testSendChattingMessage(CDBManager &dbmanager)
 void testRegistNewUser(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
-	tstring testUserLoginID = L"test111@test.com";
+	tstring testUserLoginID = L"test113@test.com";
 	tstring testUserLoginPw = L"test";
 	tstring testUserName;
 
@@ -96,7 +96,13 @@ void testRegistNewUser(CDBManager &dbmanager)
 		tcout << "실패" << endl;
 	}
 	else
-		tcout << L"성공" << endl;
+		tcout << "성공" << endl;
+}
+
+void isValidUser(CDBManager &dbmanater)
+{
+	tstring testUserLoginID = L"test1@test.com";
+	dbmanater.isValidUser(testUserLoginID);
 }
 
 void testChageUserPw(CDBManager &dbmanager)

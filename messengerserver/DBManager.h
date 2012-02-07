@@ -21,5 +21,6 @@ public:
 	userinfos_ptr	userFriends(int userID);
 	bool			sendChattingMessage(int roomNumber,int UserID,tstring &chattingMessage);
 	bool			registerNewUser(tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName);
+	bool			isValidUser(tstring &NewUserLoginID);
 };
 
