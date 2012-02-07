@@ -183,5 +183,4 @@ bool	CDBManager::isValidUser(tstring &NewUserLoginID)
 	print_it.MoreResults();
 
 	return print_it.Params().returnvalue;
-	return 1; //¿÷¿Ω
 }

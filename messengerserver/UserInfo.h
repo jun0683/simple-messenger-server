@@ -180,7 +180,7 @@ public:
 	}
 };
 
-class validUserObj
+class ValidUserObj
 {
 public:
 	int returnvalue;
@@ -190,7 +190,7 @@ public:
 class ValidUserBPA
 {
 public:
-	void operator()(BoundIOs &cols,validUserObj &params )
+	void operator()(BoundIOs &cols,ValidUserObj &params )
 	{
 		cols[0] >> params.returnvalue; //return
 		cols[1] << params.userloginID; //userloginid
