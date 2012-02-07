@@ -22,5 +22,6 @@ public:
 	bool			sendChattingMessage(int roomNumber,int UserID,tstring &chattingMessage);
 	bool			registerNewUser(tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName);
 	bool			isValidUser(tstring &NewUserLoginID);
+	bool			changeUserInfo(tstring &UserLoginID,tstring &NewUserLoginPW, tstring &NewUserName);
 };
 

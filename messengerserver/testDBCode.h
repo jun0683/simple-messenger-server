@@ -109,7 +109,17 @@ void testisValidUser(CDBManager &dbmanater)
 		tcout << "없음" << endl;
 }
 
-void testChageUserPw(CDBManager &dbmanager)
+void testChageUserInfo(CDBManager &dbmanager)
 {
-	
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	tstring testUserName;
+
+	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
+	{
+		tcout << "성공" << endl;
+	}
+	else
+		tcout << "실패" << endl;
 }
