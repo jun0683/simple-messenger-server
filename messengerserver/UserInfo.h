@@ -159,7 +159,7 @@ public:
 };
 
 
-class NewUserObj
+class UserObj
 {
 public:
 	int returnvalue;
@@ -168,10 +168,10 @@ public:
 	tstring userName;
 };
 
-class RegisterUserBPA
+class UserBPA
 {
 public:
-	void operator()(BoundIOs &cols,NewUserObj &params )
+	void operator()(BoundIOs &cols,UserObj &params )
 	{
 		cols[0] >> params.returnvalue; //return
 		cols[1] << params.userloginID; //userloginid

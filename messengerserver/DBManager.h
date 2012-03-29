@@ -9,12 +9,12 @@ public:
 	~CDBManager(void);
 	
 	void			dbLogin(void);
-	CUserInfo	getUserInfo(tstring loginID, tstring pw);
+	CUserInfo		getUserInfo(tstring loginID, tstring pw);
 	bool			userLogin(int userID);
 	bool			userLogout(int userID);
 	bool			userLog(int userID,bool state);
 	bool			isUserLogin(int userID);
-	int			makeChattingRoom(int userID,vector<int> friendIDs);
+	int				makeChattingRoom(int userID,vector<int> friendIDs);
 	bool			inviteChattingRoom(int roomNumber, int invitUserID);
 	bool			leaveChattingRoom(int roomNumber, int invitUserID);
 	bool			ChattingRoomState(int roomNumber, int UserID,bool state);
@@ -22,5 +22,6 @@ public:
 	bool			sendChattingMessage(int roomNumber,int UserID,tstring &chattingMessage);
 	bool			registerNewUser(tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName);
 	bool			isValidUser(tstring &NewUserLoginID);
+	bool			changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName);
 };
 

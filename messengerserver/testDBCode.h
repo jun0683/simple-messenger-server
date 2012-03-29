@@ -93,10 +93,10 @@ void testRegistNewUser(CDBManager &dbmanager)
 
 	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
 	{
-		tcout << "실패" << endl;
+		tcout << "등록 실패" << endl;
 	}
 	else
-		tcout << "성공" << endl;
+		tcout << "등록 성공" << endl;
 }
 
 void testisValidUser(CDBManager &dbmanater)
@@ -109,7 +109,14 @@ void testisValidUser(CDBManager &dbmanater)
 		tcout << "없음" << endl;
 }
 
-void testChageUserPw(CDBManager &dbmanager)
+void testChageUserInfo(CDBManager &dbmanager)
 {
-	
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	tstring testUserName = L"test1";
+	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
+		tcout << "바뀜" << endl;
+	else
+		tcout << "안바뀜" << endl;
 }

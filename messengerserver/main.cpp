@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		testSendChattingMessage(dbmanager);
 		testRegistNewUser(dbmanager);
 		testisValidUser(dbmanager);
+		testChageUserInfo(dbmanager);
 		
 	}
 	catch(std::exception &e)

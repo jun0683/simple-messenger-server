@@ -163,8 +163,8 @@ bool CDBManager::sendChattingMessage(int roomNumber,int UserID,tstring &chatting
 bool CDBManager::registerNewUser( tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName )
 {
 	
-	DBView<EmptyDataObj,NewUserObj> view(L"{? = call registerNewUser(?,?,?)}", EmptyBCA(),L"",RegisterUserBPA());
-	DBView<EmptyDataObj,NewUserObj>::sql_iterator print_it = view.begin();
+	DBView<EmptyDataObj,UserObj> view(L"{? = call registerNewUser(?,?,?)}", EmptyBCA(),L"",UserBPA());
+	DBView<EmptyDataObj,UserObj>::sql_iterator print_it = view.begin();
 	print_it.Params().userloginID = NewUserLoginID;
 	print_it.Params().userloginPW = NewUserLoginPW;
 	print_it.Params().userName = NewUserName;
@@ -174,7 +174,7 @@ bool CDBManager::registerNewUser( tstring &NewUserLoginID,tstring &NewUserLoginP
 	return print_it.Params().returnvalue; 
 }
 
-bool	CDBManager::isValidUser(tstring &NewUserLoginID)
+bool CDBManager::isValidUser(tstring &NewUserLoginID)
 {
 	DBView<EmptyDataObj,ValidUserObj> view(L"{? = call isValidUser(?)}", EmptyBCA(),L"",ValidUserBPA());
 	DBView<EmptyDataObj,ValidUserObj>::sql_iterator print_it = view.begin();
@@ -183,4 +183,18 @@ bool	CDBManager::isValidUser(tstring &NewUserLoginID)
 	print_it.MoreResults();
 
 	return print_it.Params().returnvalue;
+}
+
+bool CDBManager::changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName)
+{
+	DBView<EmptyDataObj,UserObj> view(L"{? = call changeUserInfo(?,?,?)}", EmptyBCA(),L"",UserBPA());
+	DBView<EmptyDataObj,UserObj>::sql_iterator print_it = view.begin();
+	print_it.Params().userloginID = userID;
+	print_it.Params().userloginPW = newPassword;
+	print_it.Params().userName = newName;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+
+	return print_it.Params().returnvalue;
+
 }
