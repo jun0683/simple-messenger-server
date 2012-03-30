@@ -120,3 +120,15 @@ void testChageUserInfo(CDBManager &dbmanager)
 	else
 		tcout << "¾È¹Ù²ñ" << endl;
 }
+
+void testUserWithdraw(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
+		tcout << "Å»Åð ¼º°ø" << endl;
+	else
+		tcout << "½ÇÆÐ" << endl;
+}

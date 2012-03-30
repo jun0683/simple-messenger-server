@@ -105,7 +105,7 @@ public:
 /// Bind Params Addresses
 //////////////////////////////////////////////////////////////////////////
 
-class ParamUserInfo
+class IDAndPWObj
 {
 public:
 	tstring loginID;    
@@ -115,7 +115,7 @@ public:
 class UserInfoBPA 
 {
 public:
-	void operator()(BoundIOs &params, ParamUserInfo &paramObj)
+	void operator()(BoundIOs &params, IDAndPWObj &paramObj)
 	{
 		params[0] << paramObj.loginID;
 		params[1] << paramObj.pw;
@@ -194,5 +194,24 @@ public:
 	{
 		cols[0] >> params.returnvalue; //return
 		cols[1] << params.userloginID; //userloginid
+	}
+};
+
+class WithdrawObj
+{
+public:
+	int returnvalue;
+	tstring userloginID;    
+	tstring userloginPW;
+};
+
+class WithdrawBPA
+{
+public:
+	void operator()(BoundIOs &params, WithdrawObj &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userloginID;
+		params[2] << paramObj.userloginPW;
 	}
 };

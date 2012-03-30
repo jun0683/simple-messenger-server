@@ -23,5 +23,6 @@ public:
 	bool			registerNewUser(tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName);
 	bool			isValidUser(tstring &NewUserLoginID);
 	bool			changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName);
+	bool withdrawUser( tstring &userLoginID, tstring &userLoginPw );
 };
 

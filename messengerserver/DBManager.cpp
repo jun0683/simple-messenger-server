@@ -47,8 +47,8 @@ CUserInfo CDBManager::getUserInfo( tstring loginID, tstring pw )
 	END CATCH
 
 	*/
-	DBView<CUserInfo,ParamUserInfo> view(L"{call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
-	DBView<CUserInfo, ParamUserInfo>::sql_iterator print_it = view;
+	DBView<CUserInfo,IDAndPWObj> view(L"{call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
+	DBView<CUserInfo, IDAndPWObj>::sql_iterator print_it = view;
 	print_it.Params().loginID = loginID;
 	print_it.Params().pw = pw;
 	*print_it = CUserInfo(); // force the statement to execute
@@ -197,4 +197,17 @@ bool CDBManager::changeUserInfo(tstring &userID,tstring &newPassword,tstring &ne
 
 	return print_it.Params().returnvalue;
 
+}
+
+bool CDBManager::withdrawUser( tstring &userLoginID, tstring &userLoginPw )
+{
+
+	DBView<EmptyDataObj,WithdrawObj> view(L"{? = call withdrawUser(?,?)}", EmptyBCA(),L"",WithdrawBPA());
+	DBView<EmptyDataObj,WithdrawObj>::sql_iterator print_it = view.begin();
+	print_it.Params().userloginID = userLoginID;
+	print_it.Params().userloginPW = userLoginPw;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+
+	return print_it.Params().returnvalue;
 }
