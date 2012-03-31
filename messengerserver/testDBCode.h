@@ -130,5 +130,12 @@ void testUserWithdraw(CDBManager &dbmanager)
 	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
 		tcout << "Ε»Επ ΌΊ°ψ" << endl;
 	else
-		tcout << "½ΗΖΠ" << endl;
+		tcout << "Ε»Επ ½ΗΖΠ" << endl;
+}
+
+void testAddfriend(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+
+
 }
