@@ -47,8 +47,8 @@ CUserInfo CDBManager::getUserInfo( tstring loginID, tstring pw )
 	END CATCH
 
 	*/
-	DBView<CUserInfo,ParamUserInfo> view(L"{call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
-	DBView<CUserInfo, ParamUserInfo>::sql_iterator print_it = view;
+	DBView<CUserInfo,IDAndPWObj> view(L"{call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
+	DBView<CUserInfo, IDAndPWObj>::sql_iterator print_it = view;
 	print_it.Params().loginID = loginID;
 	print_it.Params().pw = pw;
 	*print_it = CUserInfo(); // force the statement to execute
@@ -174,7 +174,7 @@ bool CDBManager::registerNewUser( tstring &NewUserLoginID,tstring &NewUserLoginP
 	return print_it.Params().returnvalue; 
 }
 
-bool	CDBManager::isValidUser(tstring &NewUserLoginID)
+bool CDBManager::isValidUser(tstring &NewUserLoginID)
 {
 	DBView<EmptyDataObj,ValidUserObj> view(L"{? = call isValidUser(?)}", EmptyBCA(),L"",ValidUserBPA());
 	DBView<EmptyDataObj,ValidUserObj>::sql_iterator print_it = view.begin();
@@ -185,14 +185,29 @@ bool	CDBManager::isValidUser(tstring &NewUserLoginID)
 	return print_it.Params().returnvalue;
 }
 
-bool	CDBManager::changeUserInfo(tstring &UserLoginID,tstring &NewUserLoginPW, tstring &NewUserName)
-{										 	 
+bool CDBManager::changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName)
+{
 	DBView<EmptyDataObj,UserObj> view(L"{? = call changeUserInfo(?,?,?)}", EmptyBCA(),L"",UserBPA());
 	DBView<EmptyDataObj,UserObj>::sql_iterator print_it = view.begin();
-	print_it.Params().userloginID = UserLoginID;
-	print_it.Params().userloginPW = NewUserLoginPW;
-	print_it.Params().userName = NewUserName;
+	print_it.Params().userloginID = userID;
+	print_it.Params().userloginPW = newPassword;
+	print_it.Params().userName = newName;
 	*print_it = EmptyDataObj();
 	print_it.MoreResults();
-	return print_it.Params().returnvalue; 
+
+	return print_it.Params().returnvalue;
+
+}
+
+bool CDBManager::withdrawUser( tstring &userLoginID, tstring &userLoginPw )
+{
+
+	DBView<EmptyDataObj,WithdrawObj> view(L"{? = call withdrawUser(?,?)}", EmptyBCA(),L"",WithdrawBPA());
+	DBView<EmptyDataObj,WithdrawObj>::sql_iterator print_it = view.begin();
+	print_it.Params().userloginID = userLoginID;
+	print_it.Params().userloginPW = userLoginPw;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+
+	return print_it.Params().returnvalue;
 }
