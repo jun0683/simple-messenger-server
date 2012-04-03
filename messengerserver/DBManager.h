@@ -24,5 +24,8 @@ public:
 	bool			isValidUser(tstring &NewUserLoginID);
 	bool			changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName);
 	bool withdrawUser( tstring &userLoginID, tstring &userLoginPw );
+	bool addFriendRequest( int userID, int friendID );
+	bool didFriendsRequest( int friendID, __out std::vector<int> &friendRequsts );
+	bool addFriendRespond( int friendID, int userID,bool respond );
 };
 
