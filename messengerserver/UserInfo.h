@@ -279,7 +279,7 @@ public:
 	int returnvalue;
 	int userID;    
 	int friendID;
-	bool respond;
+	int respond;
 };
 
 class AddFriendRespondBPA

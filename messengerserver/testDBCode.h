@@ -149,7 +149,7 @@ void testAddfriend(CDBManager &dbmanager)
 	{
 		std::for_each(friendRequsts.begin(),friendRequsts.end(),[=,&dbmanager](int userID)
 		{
-			tcout << "친구 추가 요청 아이뒤 : " << userID << endl;
+			tcout << "내 아이뒤 : " << friendID <<" 친구 추가 요청 아이뒤 : " << userID << endl;
 			if (dbmanager.addFriendRespond(friendID,userID,true))
 				tcout << "친구 추가 요청 허락 성공" << endl;
 			else

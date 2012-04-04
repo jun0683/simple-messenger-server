@@ -219,6 +219,7 @@ bool CDBManager::addFriendRequest( int userID, int friendID )
 	print_it.Params().userID = userID;
 	print_it.Params().friendID = friendID;
 	*print_it = EmptyDataObj();
+	tcout << print_it.Params().returnvalue;
 	print_it.MoreResults();
 	return print_it.Params().returnvalue;
 }
@@ -247,6 +248,8 @@ bool CDBManager::addFriendRespond( int friendID, int userID,bool respond )
 	print_it.Params().friendID = friendID;
 	print_it.Params().respond = respond;
 	*print_it = EmptyDataObj();
+	//문제는 sql 문에서 sql 문을 여러번 사용해서 문제
+	//sql 문을 수정 해야 한다 
 	print_it.MoreResults();
 	return print_it.Params().returnvalue;
 }
