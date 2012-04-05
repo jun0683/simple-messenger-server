@@ -293,3 +293,44 @@ public:
 		params[3] << paramObj.respond;
 	}
 };
+
+
+class AddFriend
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+};
+
+class AddFriendBPA
+{
+public:
+	void operator()(BoundIOs &params, AddFriend &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
+	}
+};
+
+
+
+class DelFriendRequest
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+};
+
+class DelFriendRequestBPA
+{
+public:
+	void operator()(BoundIOs &params, DelFriendRequest &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
+	}
+};
