@@ -211,3 +211,85 @@ bool CDBManager::withdrawUser( tstring &userLoginID, tstring &userLoginPw )
 
 	return print_it.Params().returnvalue;
 }
+
+bool CDBManager::addFriendRequest( int userID, int friendID )
+{
+	DBView<EmptyDataObj,AddFriendRequest> view(L"{? = call addFriendRequest(?,?)}", EmptyBCA(),L"",AddFriendRequestBPA());
+	DBView<EmptyDataObj,AddFriendRequest>::sql_iterator print_it = view.begin();
+	print_it.Params().userID = userID;
+	print_it.Params().friendID = friendID;
+	*print_it = EmptyDataObj();
+	tcout << print_it.Params().returnvalue;
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
+bool CDBManager::didFriendsRequest( int friendID, __out std::vector<int> &friendRequsts )
+{
+	DBView<DidFriendsRequst,DidFriendsRequstParamObj> view(L"{? = call didFriendsRequest(?)}", DidFriendsRequstBCA(),L"",DidFriendsRequstBPA());
+	DBView<DidFriendsRequst,DidFriendsRequstParamObj>::sql_iterator print_it = view.begin();
+	print_it.Params().friendID = friendID;
+	*print_it = DidFriendsRequst();
+	
+	for (; print_it != view.end(); ++print_it)
+	{
+		friendRequsts.push_back(print_it.GetDataObj().userID);
+	}
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+
+}
+
+bool CDBManager::addFriendRespond( int userID, int friendID,bool respond )
+{
+	if (updateFriendRequestState(friendID,userID,respond))
+	{
+		if (respond)
+		{
+			bool addfriend1 = addFriend(friendID,userID);
+			bool addfriend2 = addFriend(userID,friendID);
+			bool delfriendrequest = delFriendRequest(friendID,userID);
+			return addfriend1 && addfriend2 && delfriendrequest;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+bool CDBManager::updateFriendRequestState( int userID, int friendID, bool respond )
+{
+	DBView<EmptyDataObj,AddFriendRespond> view(L"{? = call updateFriendRequestState(?,?,?)}", EmptyBCA(),L"",AddFriendRespondBPA());
+	DBView<EmptyDataObj,AddFriendRespond>::sql_iterator print_it = view.begin();
+	print_it.Params().userID = userID;
+	print_it.Params().friendID = friendID;
+	print_it.Params().respond = respond;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
+bool CDBManager::addFriend( int userID, int friendID )
+{
+	DBView<EmptyDataObj,AddFriend> view(L"{? = call addFriend(?,?)}", EmptyBCA(),L"",AddFriendBPA());
+	DBView<EmptyDataObj,AddFriend>::sql_iterator print_it = view.begin();
+	print_it.Params().userID = userID;
+	print_it.Params().friendID = friendID;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
+bool CDBManager::delFriendRequest( int userID, int friendID )
+{
+	DBView<EmptyDataObj,DelFriendRequest> view(L"{? = call delFriendRequest(?,?)}", EmptyBCA(),L"",DelFriendRequestBPA());
+	DBView<EmptyDataObj,DelFriendRequest>::sql_iterator print_it = view.begin();
+	print_it.Params().userID = userID;
+	print_it.Params().friendID = friendID;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
+
+
+

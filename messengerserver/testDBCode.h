@@ -136,6 +136,25 @@ void testUserWithdraw(CDBManager &dbmanager)
 void testAddfriend(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
+	int testuserID = 1;
+	int friendID = 14;
 
+	if (dbmanager.addFriendRequest(testuserID,friendID))
+		tcout << "친구 추가 요청 성공" << endl;
+	else
+		tcout << "친구 추가 요청 실패" << endl;
 
+	std::vector<int> friendRequsts;
+	int myusrID = friendID;
+	if (dbmanager.didFriendsRequest(myusrID,friendRequsts))
+	{
+		std::for_each(friendRequsts.begin(),friendRequsts.end(),[=,&dbmanager](int friendRequstID)
+		{
+			tcout << "내 아이뒤 : " << myusrID <<" 친구 추가 요청 아이뒤 : " << friendRequstID << endl;
+			if (dbmanager.addFriendRespond(myusrID,friendRequstID,true))
+				tcout << "친구 추가 요청 허락 성공" << endl;
+			else
+				tcout << "친구 추가 요청 허락 실패" << endl;
+		});
+	}
 }

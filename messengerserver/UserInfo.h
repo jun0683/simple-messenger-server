@@ -1,5 +1,10 @@
 #pragma once
 
+//////////////////////////////////////////////////////////////////////////
+/// BCA 
+/// Bind Column Addresses
+//////////////////////////////////////////////////////////////////////////
+
 class CUserInfo
 {
 public:
@@ -16,7 +21,7 @@ typedef shared_ptr<CUserInfo> userInfo_ptr;
 typedef vector<userInfo_ptr> userInfos;
 typedef shared_ptr<userInfos> userinfos_ptr;
 
-class UserInfoBCA //BCA : Bind Column Addresses
+class UserInfoBCA 
 {
 public:
 	void operator()(BoundIOs &cols, CUserInfo &row)
@@ -97,6 +102,21 @@ public:
 		cols[1] << row._tstring(); //userloginid
 		cols[2] << row._tstring(); //userloginpw
 		cols.BindVariantRow(row);
+	}
+};
+
+class DidFriendsRequst
+{
+public:
+	int userID;
+};
+
+class DidFriendsRequstBCA
+{
+public:
+	void operator()(BoundIOs &cols, DidFriendsRequst &row)
+	{
+		cols[L"userID"]	>> row.userID;
 	}
 };
 
@@ -197,6 +217,7 @@ public:
 	}
 };
 
+
 class WithdrawObj
 {
 public:
@@ -213,5 +234,103 @@ public:
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userloginID;
 		params[2] << paramObj.userloginPW;
+	}
+};
+
+class AddFriendRequest
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+};
+
+class AddFriendRequestBPA
+{
+public:
+	void operator()(BoundIOs &params, AddFriendRequest &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
+	}
+};
+
+class DidFriendsRequstParamObj
+{
+public:
+	int returnvalue;
+	int friendID;
+};
+
+class DidFriendsRequstBPA
+{
+public:
+	void operator()(BoundIOs &params, DidFriendsRequstParamObj &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.friendID;
+	}
+};
+
+class AddFriendRespond
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+	int respond;
+};
+
+class AddFriendRespondBPA
+{
+public:
+	void operator()(BoundIOs &params, AddFriendRespond &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
+		params[3] << paramObj.respond;
+	}
+};
+
+
+class AddFriend
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+};
+
+class AddFriendBPA
+{
+public:
+	void operator()(BoundIOs &params, AddFriend &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
+	}
+};
+
+
+
+class DelFriendRequest
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+};
+
+class DelFriendRequestBPA
+{
+public:
+	void operator()(BoundIOs &params, DelFriendRequest &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
 	}
 };
