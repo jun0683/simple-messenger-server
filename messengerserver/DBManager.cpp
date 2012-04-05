@@ -246,33 +246,14 @@ bool CDBManager::addFriendRespond( int userID, int friendID,bool respond )
 	{
 		if (respond)
 		{
-			bool test = addFriend(friendID,userID);
-			tcout << "addfriend : " << test << endl;
-			test = addFriend(userID,friendID);
-			tcout << "addfriend : " << test << endl;
-			test = delFriendRequest(friendID,userID);
-			tcout << "delFriendRequest : " << test << endl;
-			
+			bool addfriend1 = addFriend(friendID,userID);
+			bool addfriend2 = addFriend(userID,friendID);
+			bool delfriendrequest = delFriendRequest(friendID,userID);
+			return addfriend1 && addfriend2 && delfriendrequest;
 		}
 		return 1;
 	}
 	return 0;
-	
-
-	
-
-	//1.요청
-	//2.승락
-	//3.거부
-
-	//update add friend request state 
-	//if respond true
-	//addfriend
-	//delFriendRequst
-	//else
-	//nothing
-
-	//delFriendRequst(friendID,userID)
 }
 
 bool CDBManager::updateFriendRequestState( int userID, int friendID, bool respond )
@@ -294,7 +275,7 @@ bool CDBManager::addFriend( int userID, int friendID )
 	print_it.Params().userID = userID;
 	print_it.Params().friendID = friendID;
 	*print_it = EmptyDataObj();
-	while(print_it.MoreResults()){}
+	print_it.MoreResults();
 	return print_it.Params().returnvalue;
 }
 
