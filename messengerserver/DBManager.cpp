@@ -308,4 +308,23 @@ bool CDBManager::findUserID( tstring &userLoginID,__out int &findUserID )
 
 
 
+bool CDBManager::delFriend( int userID, int friendID )
+{
+	
+	DBView<EmptyDataObj,DelFriend> view(L"{? = call delFriend(?,?)}", EmptyBCA(),L"",DelFriendBPA());
+	DBView<EmptyDataObj,DelFriend>::sql_iterator print_it = view.begin();
+	print_it.Params().userID = userID;
+	print_it.Params().friendID = friendID;
+	*print_it = EmptyDataObj();
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
+bool CDBManager::delToFriendsWithEachOther( int userID, int friendID )
+{
+	return delFriend(userID,friendID) && delFriend(friendID,userID);
+}
+
+
+
 

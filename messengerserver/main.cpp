@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
 		testUserWithdraw(dbmanager);
 		testAddfriend(dbmanager);
 		testfindUserID(dbmanager);
+		testdelFriend(dbmanager);
 		
 	}
 	catch(std::exception &e)

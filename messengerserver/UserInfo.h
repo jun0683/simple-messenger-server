@@ -367,3 +367,22 @@ public:
 		
 	}
 };
+
+class DelFriend
+{
+public:
+	int returnvalue;
+	int userID;    
+	int friendID;
+};
+
+class DelFriendBPA
+{
+public:
+	void operator()(BoundIOs &params, DelFriend &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userID;
+		params[2] << paramObj.friendID;
+	}
+};

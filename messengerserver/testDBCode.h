@@ -175,3 +175,14 @@ void testfindUserID(CDBManager &dbmanater)
 		tcout << "찾는 유저 아이디 : " << testUserLoginID << "없음" << endl;
 
 }
+
+void testdelFriend(CDBManager &dbmanater)
+{
+	FuctionTimer timer;
+	int testuserID = 1;
+	int testFriendID = 14;
+	if(dbmanater.delToFriendsWithEachOther(testuserID,testFriendID))
+		tcout << "친구 삭제 성공" << endl;
+	else
+		tcout << "친구 삭제 실패" << endl;
+}
