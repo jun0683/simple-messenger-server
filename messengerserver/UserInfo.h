@@ -33,7 +33,7 @@ public:
 	}
 };
 
-class UserIDObj
+class UserIDRow
 {
 public:
 	int userID;
@@ -42,20 +42,20 @@ public:
 class UserIDBCA
 {
 public:
-	void operator()(BoundIOs &cols, UserIDObj &row)
+	void operator()(BoundIOs &cols, UserIDRow &row)
 	{
 		cols[L"userID"]	>> row.userID;
 	}
 };
 
-class EmptyDataObj
+class EmptyRow
 {
 };
 
 class EmptyBCA
 {
 public:
-	void operator()(BoundIOs &cols, EmptyDataObj &row)	
+	void operator()(BoundIOs &cols, EmptyRow &row)	
 	{
 		//cols.BindAsBase(row);
 	}
@@ -120,7 +120,7 @@ public:
 	}
 };
 
-class DidFriendsRequst
+class DidFriendsRequstRow
 {
 public:
 	int userID;
@@ -129,13 +129,13 @@ public:
 class DidFriendsRequstBCA
 {
 public:
-	void operator()(BoundIOs &cols, DidFriendsRequst &row)
+	void operator()(BoundIOs &cols, DidFriendsRequstRow &row)
 	{
 		cols[L"userID"]	>> row.userID;
 	}
 };
 
-class FindUserID
+class FindUserIDRow
 {
 public:
 	int userID;
@@ -144,7 +144,7 @@ public:
 class FindUserIDBCA 
 {
 public:
-	void operator()(BoundIOs &cols, FindUserID &row)
+	void operator()(BoundIOs &cols, FindUserIDRow &row)
 	{
 		cols[L"userID"]	>> row.userID;
 	}
@@ -155,7 +155,7 @@ public:
 /// Bind Params Addresses
 //////////////////////////////////////////////////////////////////////////
 
-class IDAndPWObj
+class IDAndPWParams
 {
 public:
 	int returnvalue;
@@ -166,7 +166,7 @@ public:
 class UserInfoBPA 
 {
 public:
-	void operator()(BoundIOs &params, IDAndPWObj &paramObj)
+	void operator()(BoundIOs &params, IDAndPWParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.loginID;
@@ -174,7 +174,7 @@ public:
 	}
 };
 
-class GetUserID
+class GetUserIDParams
 {
 public:
 	int returnvalue;
@@ -184,14 +184,14 @@ public:
 class GetUserIDBPA 
 {
 public:
-	void operator()(BoundIOs &params, GetUserID &paramObj)
+	void operator()(BoundIOs &params, GetUserIDParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.loginID;
 	}
 };
 
-class ParamUserLog
+class UserLogParams
 {
 public:
 	int userID;
@@ -202,7 +202,7 @@ public:
 class UserLogBPA 
 {
 public:
-	void operator()(BoundIOs &params, ParamUserLog &paramObj)
+	void operator()(BoundIOs &params, UserLogParams &paramObj)
 	{
 		params[0] << paramObj.userID;
 		params[1] << paramObj.logState;
@@ -211,7 +211,7 @@ public:
 	}
 };
 
-class ParamUserID
+class UserIDParams
 {
 public:
 	int userID;
@@ -221,14 +221,14 @@ public:
 class UserIDBPA 
 {
 public:
-	void operator()(BoundIOs &params, ParamUserID &paramObj)
+	void operator()(BoundIOs &params, UserIDParams &paramObj)
 	{
 		params[0] << paramObj.userID;
 	}	
 };
 
 
-class UserObj
+class UserParams
 {
 public:
 	int returnvalue;
@@ -240,7 +240,7 @@ public:
 class UserBPA
 {
 public:
-	void operator()(BoundIOs &cols,UserObj &params )
+	void operator()(BoundIOs &cols,UserParams &params )
 	{
 		cols[0] >> params.returnvalue; //return
 		cols[1] << params.userloginID; //userloginid
@@ -249,7 +249,7 @@ public:
 	}
 };
 
-class ValidUserObj
+class ValidUserParams
 {
 public:
 	int returnvalue;
@@ -259,7 +259,7 @@ public:
 class ValidUserBPA
 {
 public:
-	void operator()(BoundIOs &cols,ValidUserObj &params )
+	void operator()(BoundIOs &cols,ValidUserParams &params )
 	{
 		cols[0] >> params.returnvalue; //return
 		cols[1] << params.userloginID; //userloginid
@@ -267,7 +267,7 @@ public:
 };
 
 
-class WithdrawObj
+class WithdrawParams
 {
 public:
 	int returnvalue;
@@ -278,7 +278,7 @@ public:
 class WithdrawBPA
 {
 public:
-	void operator()(BoundIOs &params, WithdrawObj &paramObj)
+	void operator()(BoundIOs &params, WithdrawParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userloginID;
@@ -286,7 +286,7 @@ public:
 	}
 };
 
-class AddFriendRequest
+class AddFriendRequestParams
 {
 public:
 	int returnvalue;
@@ -297,7 +297,7 @@ public:
 class AddFriendRequestBPA
 {
 public:
-	void operator()(BoundIOs &params, AddFriendRequest &paramObj)
+	void operator()(BoundIOs &params, AddFriendRequestParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
@@ -305,7 +305,7 @@ public:
 	}
 };
 
-class DidFriendsRequstParamObj
+class DidFriendsRequstParams
 {
 public:
 	int returnvalue;
@@ -315,14 +315,14 @@ public:
 class DidFriendsRequstBPA
 {
 public:
-	void operator()(BoundIOs &params, DidFriendsRequstParamObj &paramObj)
+	void operator()(BoundIOs &params, DidFriendsRequstParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.friendID;
 	}
 };
 
-class AddFriendRespond
+class AddFriendRespondParams
 {
 public:
 	int returnvalue;
@@ -334,7 +334,7 @@ public:
 class AddFriendRespondBPA
 {
 public:
-	void operator()(BoundIOs &params, AddFriendRespond &paramObj)
+	void operator()(BoundIOs &params, AddFriendRespondParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
@@ -344,7 +344,7 @@ public:
 };
 
 
-class AddFriend
+class AddFriendParams
 {
 public:
 	int returnvalue;
@@ -355,7 +355,7 @@ public:
 class AddFriendBPA
 {
 public:
-	void operator()(BoundIOs &params, AddFriend &paramObj)
+	void operator()(BoundIOs &params, AddFriendParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
@@ -365,7 +365,7 @@ public:
 
 
 
-class DelFriendRequest
+class DelFriendRequestParams
 {
 public:
 	int returnvalue;
@@ -376,7 +376,7 @@ public:
 class DelFriendRequestBPA
 {
 public:
-	void operator()(BoundIOs &params, DelFriendRequest &paramObj)
+	void operator()(BoundIOs &params, DelFriendRequestParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
@@ -384,7 +384,7 @@ public:
 	}
 };
 
-class FindUser
+class FindUserParams
 {
 public:
 	int returnvalue;
@@ -394,7 +394,7 @@ public:
 class FindUserBPA
 {
 public:
-	void operator()(BoundIOs &params, FindUser &paramObj)
+	void operator()(BoundIOs &params, FindUserParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userloginID;
@@ -402,7 +402,7 @@ public:
 	}
 };
 
-class DelFriend
+class DelFriendParams
 {
 public:
 	int returnvalue;
@@ -413,7 +413,7 @@ public:
 class DelFriendBPA
 {
 public:
-	void operator()(BoundIOs &params, DelFriend &paramObj)
+	void operator()(BoundIOs &params, DelFriendParams &paramObj)
 	{
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
