@@ -290,6 +290,22 @@ bool CDBManager::delFriendRequest( int userID, int friendID )
 	return print_it.Params().returnvalue;
 }
 
+bool CDBManager::findUserID( tstring &userLoginID,__out int &findUserID )
+{
+	DBView<FindUserID,FindUser> view(L"{? = call findUser(?)}", FindUserIDBCA(),L"",FindUserBPA());
+	DBView<FindUserID,FindUser>::sql_iterator print_it = view.begin();
+	print_it.Params().userloginID = userLoginID;
+	*print_it = FindUserID();
+
+	for (; print_it != view.end(); ++print_it)
+	{
+		findUserID = print_it.GetDataObj().userID;
+	}
+
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
 
 
 

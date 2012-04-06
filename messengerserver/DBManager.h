@@ -30,5 +30,6 @@ public:
 	bool delFriendRequest( int userID, int friendID);
 	bool updateFriendRequestState( int userID, int friendID, bool respond );
 	bool addFriend( int userID, int friendID );
+	bool findUserID( tstring &userLoginID,__out int &findUserID );
 };
 

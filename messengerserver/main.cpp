@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 		testChageUserInfo(dbmanager);
 		testUserWithdraw(dbmanager);
 		testAddfriend(dbmanager);
+		testfindUserID(dbmanager);
 		
 	}
 	catch(std::exception &e)
