@@ -1,4 +1,4 @@
-
+//À¯Àú
 void testuserInfo(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
@@ -38,6 +38,57 @@ void testUserFriends(CDBManager &dbmanager)
 	timer.endTimer();
 }
 
+void testRegistNewUser(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test";
+	tstring testUserName;
+
+	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
+	{
+		tcout << "µî·Ï ½ÇÆÐ" << endl;
+	}
+	else
+		tcout << "µî·Ï ¼º°ø" << endl;
+}
+
+void testUserWithdraw(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
+		tcout << "Å»Åð ¼º°ø" << endl;
+	else
+		tcout << "Å»Åð ½ÇÆÐ" << endl;
+}
+
+void testisValidUser(CDBManager &dbmanater)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test100@test.com";
+	if(dbmanater.isValidUser(testUserLoginID))
+		tcout << "ÀÖÀ½" << endl;
+	else
+		tcout << "¾øÀ½" << endl;
+}
+
+
+void testChageUserInfo(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	tstring testUserName = L"test1";
+	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
+		tcout << "¹Ù²ñ" << endl;
+	else
+		tcout << "¾È¹Ù²ñ" << endl;
+}
+
+//·Î±×ÀÎ
 void testUserFriendsLoginState(CDBManager &dbmanager)
 {
 	userinfos_ptr friends = dbmanager.userFriends(1);
@@ -53,6 +104,7 @@ void testUserFriendsLoginState(CDBManager &dbmanager)
 
 }
 
+//Ã¤ÆÃ
 void testCreatechattingRoom(CDBManager &dbmanager)
 {
 	int testUserID = 1;
@@ -84,54 +136,7 @@ void testSendChattingMessage(CDBManager &dbmanager)
 	dbmanager.sendChattingMessage(roomNumber,testUserID1,chattingmessage);
 }
 
-void testRegistNewUser(CDBManager &dbmanager)
-{
-	FuctionTimer timer;
-	tstring testUserLoginID = L"test113@test.com";
-	tstring testUserLoginPw = L"test";
-	tstring testUserName;
-
-	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
-	{
-		tcout << "µî·Ï ½ÇÆÐ" << endl;
-	}
-	else
-		tcout << "µî·Ï ¼º°ø" << endl;
-}
-
-void testisValidUser(CDBManager &dbmanater)
-{
-	FuctionTimer timer;
-	tstring testUserLoginID = L"test100@test.com";
-	if(dbmanater.isValidUser(testUserLoginID))
-		tcout << "ÀÖÀ½" << endl;
-	else
-		tcout << "¾øÀ½" << endl;
-}
-
-void testChageUserInfo(CDBManager &dbmanager)
-{
-	FuctionTimer timer;
-	tstring testUserLoginID = L"test113@test.com";
-	tstring testUserLoginPw = L"test1";
-	tstring testUserName = L"test1";
-	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
-		tcout << "¹Ù²ñ" << endl;
-	else
-		tcout << "¾È¹Ù²ñ" << endl;
-}
-
-void testUserWithdraw(CDBManager &dbmanager)
-{
-	FuctionTimer timer;
-
-	tstring testUserLoginID = L"test113@test.com";
-	tstring testUserLoginPw = L"test1";
-	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
-		tcout << "Å»Åð ¼º°ø" << endl;
-	else
-		tcout << "Å»Åð ½ÇÆÐ" << endl;
-}
+//Ä£±¸
 
 void testAddfriend(CDBManager &dbmanager)
 {

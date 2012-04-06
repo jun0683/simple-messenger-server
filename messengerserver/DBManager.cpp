@@ -122,7 +122,7 @@ int CDBManager::makeChattingRoom( int userID, vector<int> friendIDs)
 	r = *print_it;
 	return r[L"0"];
 }
-
+¤À
 bool CDBManager::inviteChattingRoom( int roomNumber, int inviteUserID )
 {
 	return ChattingRoomState(roomNumber,inviteUserID,true);;
