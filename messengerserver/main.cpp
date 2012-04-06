@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
 		CDBManager dbmanager;
 		dbmanager.dbLogin();
 		testuserInfo(dbmanager);
+		testUserID(dbmanager);
 		testUserLogState(dbmanager);
 		testUserFriends(dbmanager);
 		testUserFriendsLoginState(dbmanager);
@@ -24,6 +25,7 @@ int main(int argc, char* argv[])
 		testUserWithdraw(dbmanager);
 		testAddfriend(dbmanager);
 		testfindUserID(dbmanager);
+		testdelFriend(dbmanager);
 		
 	}
 	catch(std::exception &e)

@@ -1,20 +1,55 @@
-
+//유저
 void testuserInfo(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test1@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test3@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test4@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test5@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test10@test.com",L"1234").userID <<std::endl;
-	if(-1 == dbmanager.getUserInfo(L"test10@test.com",L"1234").userID)
-		tcout << "없는 유저입니다." << endl;
+	CUserInfo userinfo;
+
+	if(dbmanager.getUserInfo(L"test@test.com",L"1234",userinfo))
+		tcout << "있는 유저입니다 userid : " << userinfo.userID  << endl;
+	else
+		tcout << "없는 유저입니다." <<endl;
+	
+	if(dbmanager.getUserInfo(L"test10@test.com",L"1234",userinfo))
+		tcout << "있는 유저입니다 userid : " << userinfo.userID  << endl;
+	else
+		tcout << "없는 유저입니다." <<endl;
+
+	if(dbmanager.getUserInfo(L"test3@test.com",L"1234",userinfo))
+		tcout << "있는 유저입니다 userid : " << userinfo.userID  << endl;
+	else
+		tcout << "없는 유저입니다." <<endl;
+
+}
+
+void testUserID(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring loginID;
+	int userID;
+
+	loginID = L"test@test.com";
+	if(dbmanager.getUserID(loginID,userID))
+		tcout << "loginID : " << loginID <<"는 있는 유저입니다 userid : " << userID  << endl;
+	else
+		tcout << "loginID : " << loginID <<"는 없는 유저입니다." <<endl;
+
+	loginID = L"test11@test.com";
+	if(dbmanager.getUserID(loginID,userID))
+		tcout << "loginID : " << loginID <<"는 있는 유저입니다 userid : " << userID  << endl;
+	else
+		tcout << "loginID : " << loginID <<"는 없는 유저입니다." <<endl;
+	
+	loginID = L"test3@test.com";
+	if(dbmanager.getUserID(loginID,userID))
+		tcout << "loginID : " << loginID <<"는 있는 유저입니다 userid : " << userID  << endl;
+	else
+		tcout << "loginID : " << loginID <<"는 없는 유저입니다." <<endl;
 }
 
 void testUserLogState(CDBManager &dbmanager)
 {
-	CUserInfo user = dbmanager.getUserInfo(L"test@test.com",L"1234");
+	CUserInfo user;
+	dbmanager.getUserInfo(L"test@test.com",L"1234",user);
 	CTimer timer;
 	timer.startTimer();
 	tcout << "userid : " << user.userID << ", login state : " << dbmanager.userLogin(user.userID) << endl;
@@ -38,6 +73,57 @@ void testUserFriends(CDBManager &dbmanager)
 	timer.endTimer();
 }
 
+void testRegistNewUser(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test";
+	tstring testUserName;
+
+	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
+	{
+		tcout << "등록 실패" << endl;
+	}
+	else
+		tcout << "등록 성공" << endl;
+}
+
+void testUserWithdraw(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
+		tcout << "탈퇴 성공" << endl;
+	else
+		tcout << "탈퇴 실패" << endl;
+}
+
+void testisValidUser(CDBManager &dbmanater)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test100@test.com";
+	if(dbmanater.isValidUser(testUserLoginID))
+		tcout << "있음" << endl;
+	else
+		tcout << "없음" << endl;
+}
+
+
+void testChageUserInfo(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test113@test.com";
+	tstring testUserLoginPw = L"test1";
+	tstring testUserName = L"test1";
+	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
+		tcout << "바뀜" << endl;
+	else
+		tcout << "안바뀜" << endl;
+}
+
+//로그인
 void testUserFriendsLoginState(CDBManager &dbmanager)
 {
 	userinfos_ptr friends = dbmanager.userFriends(1);
@@ -53,6 +139,7 @@ void testUserFriendsLoginState(CDBManager &dbmanager)
 
 }
 
+//채팅
 void testCreatechattingRoom(CDBManager &dbmanager)
 {
 	int testUserID = 1;
@@ -84,54 +171,7 @@ void testSendChattingMessage(CDBManager &dbmanager)
 	dbmanager.sendChattingMessage(roomNumber,testUserID1,chattingmessage);
 }
 
-void testRegistNewUser(CDBManager &dbmanager)
-{
-	FuctionTimer timer;
-	tstring testUserLoginID = L"test113@test.com";
-	tstring testUserLoginPw = L"test";
-	tstring testUserName;
-
-	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
-	{
-		tcout << "등록 실패" << endl;
-	}
-	else
-		tcout << "등록 성공" << endl;
-}
-
-void testisValidUser(CDBManager &dbmanater)
-{
-	FuctionTimer timer;
-	tstring testUserLoginID = L"test100@test.com";
-	if(dbmanater.isValidUser(testUserLoginID))
-		tcout << "있음" << endl;
-	else
-		tcout << "없음" << endl;
-}
-
-void testChageUserInfo(CDBManager &dbmanager)
-{
-	FuctionTimer timer;
-	tstring testUserLoginID = L"test113@test.com";
-	tstring testUserLoginPw = L"test1";
-	tstring testUserName = L"test1";
-	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
-		tcout << "바뀜" << endl;
-	else
-		tcout << "안바뀜" << endl;
-}
-
-void testUserWithdraw(CDBManager &dbmanager)
-{
-	FuctionTimer timer;
-
-	tstring testUserLoginID = L"test113@test.com";
-	tstring testUserLoginPw = L"test1";
-	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
-		tcout << "탈퇴 성공" << endl;
-	else
-		tcout << "탈퇴 실패" << endl;
-}
+//친구
 
 void testAddfriend(CDBManager &dbmanager)
 {
@@ -174,4 +214,15 @@ void testfindUserID(CDBManager &dbmanater)
 	else
 		tcout << "찾는 유저 아이디 : " << testUserLoginID << "없음" << endl;
 
+}
+
+void testdelFriend(CDBManager &dbmanater)
+{
+	FuctionTimer timer;
+	int testuserID = 1;
+	int testFriendID = 14;
+	if(dbmanater.delToFriendsWithEachOther(testuserID,testFriendID))
+		tcout << "친구 삭제 성공" << endl;
+	else
+		tcout << "친구 삭제 실패" << endl;
 }
