@@ -17,6 +17,7 @@ public:
 	bool			isValidUser(tstring &NewUserLoginID);
 	bool			changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName);
 	bool			withdrawUser( tstring &userLoginID, tstring &userLoginPw );
+	bool			getUserID( tstring &loginID,__out int &userID );
 
 	//////////////////////////////////////////////////////////////////////////
 	/// ·Î±×ÀÎ

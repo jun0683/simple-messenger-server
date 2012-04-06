@@ -33,6 +33,21 @@ public:
 	}
 };
 
+class UserIDObj
+{
+public:
+	int userID;
+};
+
+class UserIDBCA
+{
+public:
+	void operator()(BoundIOs &cols, UserIDObj &row)
+	{
+		cols[L"userID"]	>> row.userID;
+	}
+};
+
 class EmptyDataObj
 {
 };
@@ -156,6 +171,23 @@ public:
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.loginID;
 		params[2] << paramObj.pw;
+	}
+};
+
+class GetUserID
+{
+public:
+	int returnvalue;
+	tstring loginID;    
+};
+
+class GetUserIDBPA 
+{
+public:
+	void operator()(BoundIOs &params, GetUserID &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.loginID;
 	}
 };
 

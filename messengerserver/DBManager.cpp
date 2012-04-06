@@ -36,6 +36,18 @@ bool CDBManager::getUserInfo( tstring loginID, tstring pw,__out CUserInfo &userI
 }
 
 
+bool CDBManager::getUserID( tstring &loginID,__out int &userID )
+{
+	DBView<UserIDObj,GetUserID> view(L"{? = call getUserID(?)}", UserIDBCA(),L"",GetUserIDBPA());
+	DBView<UserIDObj,GetUserID>::sql_iterator print_it = view;
+	print_it.Params().loginID = loginID;
+	*print_it = UserIDObj(); // force the statement to execute
+	userID = print_it->userID;
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}
+
+
 bool CDBManager::userLogin(int userID)
 {
 	return userLog(userID,1);

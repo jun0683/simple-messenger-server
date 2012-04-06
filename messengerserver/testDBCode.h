@@ -21,6 +21,31 @@ void testuserInfo(CDBManager &dbmanager)
 
 }
 
+void testUserID(CDBManager &dbmanager)
+{
+	FuctionTimer timer;
+	tstring loginID;
+	int userID;
+
+	loginID = L"test@test.com";
+	if(dbmanager.getUserID(loginID,userID))
+		tcout << "loginID : " << loginID <<"는 있는 유저입니다 userid : " << userID  << endl;
+	else
+		tcout << "loginID : " << loginID <<"는 없는 유저입니다." <<endl;
+
+	loginID = L"test11@test.com";
+	if(dbmanager.getUserID(loginID,userID))
+		tcout << "loginID : " << loginID <<"는 있는 유저입니다 userid : " << userID  << endl;
+	else
+		tcout << "loginID : " << loginID <<"는 없는 유저입니다." <<endl;
+	
+	loginID = L"test3@test.com";
+	if(dbmanager.getUserID(loginID,userID))
+		tcout << "loginID : " << loginID <<"는 있는 유저입니다 userid : " << userID  << endl;
+	else
+		tcout << "loginID : " << loginID <<"는 없는 유저입니다." <<endl;
+}
+
 void testUserLogState(CDBManager &dbmanager)
 {
 	CUserInfo user;
