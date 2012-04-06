@@ -158,3 +158,20 @@ void testAddfriend(CDBManager &dbmanager)
 		});
 	}
 }
+
+void testfindUserID(CDBManager &dbmanater)
+{
+	FuctionTimer timer;
+	tstring testUserLoginID = L"test100@test.com";
+	int findUserID = 0;
+	if(dbmanater.findUserID(testUserLoginID,findUserID))
+		tcout << "찾는 유저 아이디 : " << testUserLoginID << "있음 아이디 : " << findUserID << endl;
+	else
+		tcout << "찾는 유저 아이디 : " << testUserLoginID << "없음" << endl;
+	testUserLoginID = L"test@test.com";
+	if(dbmanater.findUserID(testUserLoginID,findUserID))
+		tcout << "찾는 유저 아이디 : " << testUserLoginID << "있음 아이디 : " << findUserID << endl;
+	else
+		tcout << "찾는 유저 아이디 : " << testUserLoginID << "없음" << endl;
+
+}

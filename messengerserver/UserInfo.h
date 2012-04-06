@@ -120,6 +120,21 @@ public:
 	}
 };
 
+class FindUserID
+{
+public:
+	int userID;
+};
+
+class FindUserIDBCA 
+{
+public:
+	void operator()(BoundIOs &cols, FindUserID &row)
+	{
+		cols[L"userID"]	>> row.userID;
+	}
+};
+
 //////////////////////////////////////////////////////////////////////////
 /// BPA
 /// Bind Params Addresses
@@ -332,5 +347,23 @@ public:
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
 		params[2] << paramObj.friendID;
+	}
+};
+
+class FindUser
+{
+public:
+	int returnvalue;
+	tstring userloginID;
+};
+
+class FindUserBPA
+{
+public:
+	void operator()(BoundIOs &params, FindUser &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.userloginID;
+		
 	}
 };
