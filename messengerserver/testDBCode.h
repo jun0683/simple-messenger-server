@@ -2,19 +2,29 @@
 void testuserInfo(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test1@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test3@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test4@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test5@test.com",L"1234").userID <<std::endl;
-	tcout << "userid : " << dbmanager.getUserInfo(L"test10@test.com",L"1234").userID <<std::endl;
-	if(-1 == dbmanager.getUserInfo(L"test10@test.com",L"1234").userID)
-		tcout << "없는 유저입니다." << endl;
+	CUserInfo userinfo;
+
+	if(dbmanager.getUserInfo(L"test@test.com",L"1234",userinfo))
+		tcout << "있는 유저입니다 userid : " << userinfo.userID  << endl;
+	else
+		tcout << "없는 유저입니다." <<endl;
+	
+	if(dbmanager.getUserInfo(L"test10@test.com",L"1234",userinfo))
+		tcout << "있는 유저입니다 userid : " << userinfo.userID  << endl;
+	else
+		tcout << "없는 유저입니다." <<endl;
+
+	if(dbmanager.getUserInfo(L"test3@test.com",L"1234",userinfo))
+		tcout << "있는 유저입니다 userid : " << userinfo.userID  << endl;
+	else
+		tcout << "없는 유저입니다." <<endl;
+
 }
 
 void testUserLogState(CDBManager &dbmanager)
 {
-	CUserInfo user = dbmanager.getUserInfo(L"test@test.com",L"1234");
+	CUserInfo user;
+	dbmanager.getUserInfo(L"test@test.com",L"1234",user);
 	CTimer timer;
 	timer.startTimer();
 	tcout << "userid : " << user.userID << ", login state : " << dbmanager.userLogin(user.userID) << endl;

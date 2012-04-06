@@ -23,36 +23,16 @@ void CDBManager::dbLogin(void)
 	}
 }
 
-CUserInfo CDBManager::getUserInfo( tstring loginID, tstring pw )
+bool CDBManager::getUserInfo( tstring loginID, tstring pw,__out CUserInfo &userInfo )
 {
-	/*
-	SELECT @err = @@ERROR;
-	IF @err != 0
-	BEGIN
-	PRINT  '###' + @name + '을(를) INSERT에실패했습니다. ###'
-	END;
-
-	RETURN @err; -- 오류번호를 돌려줌.
-
-	BEGIN TRY 
-	INSERT INTO 
-	userTbl(userID,name,birthYear,addr,mobile1,mobile2,height)
-	VALUES (@userid, @name, @birthYear, @addr,	@mobile1, 
-	@mobile2,	@height)
-	END TRY
-
-	BEGIN CATCH
-	SELECT ERROR_NUMBER()
-	SELECT ERROR_MESSAGE()
-	END CATCH
-
-	*/
-	DBView<CUserInfo,IDAndPWObj> view(L"{call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
+	DBView<CUserInfo,IDAndPWObj> view(L"{? = call getUserInfo(?,?)}", UserInfoBCA(),L"",UserInfoBPA());
 	DBView<CUserInfo, IDAndPWObj>::sql_iterator print_it = view;
 	print_it.Params().loginID = loginID;
 	print_it.Params().pw = pw;
 	*print_it = CUserInfo(); // force the statement to execute
-	return *print_it;
+	userInfo = *print_it;
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
 }
 
 
@@ -122,7 +102,7 @@ int CDBManager::makeChattingRoom( int userID, vector<int> friendIDs)
 	r = *print_it;
 	return r[L"0"];
 }
-ㅐ
+
 bool CDBManager::inviteChattingRoom( int roomNumber, int inviteUserID )
 {
 	return ChattingRoomState(roomNumber,inviteUserID,true);;

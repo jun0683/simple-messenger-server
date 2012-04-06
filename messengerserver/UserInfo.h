@@ -143,6 +143,7 @@ public:
 class IDAndPWObj
 {
 public:
+	int returnvalue;
 	tstring loginID;    
 	tstring pw;
 };
@@ -152,8 +153,9 @@ class UserInfoBPA
 public:
 	void operator()(BoundIOs &params, IDAndPWObj &paramObj)
 	{
-		params[0] << paramObj.loginID;
-		params[1] << paramObj.pw;
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.loginID;
+		params[2] << paramObj.pw;
 	}
 };
 
