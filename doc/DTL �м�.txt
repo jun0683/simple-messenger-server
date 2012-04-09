@@ -1,0 +1,12 @@
+DB_iterator::FetchNextRow
+DB_iterator::RebuildBCA
+	DB_iterator::ReBindRowbuf		
+	DB_iterator::open
+		DB_iterator::MakeBindings
+			stmt.BindParam(BoundIO &param)
+				SQLBindParameter(BoundIO &param)
+					param.
+
+BoundIOs:pubilc map<tstring,BoundIO>		
+	BoundIOs::operator[]
+		insert()
