@@ -58,3 +58,7 @@ _ReSharper*/
 
 #NuGet
 packages/
+
+#python
+
+*.pyc
