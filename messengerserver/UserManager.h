@@ -1,14 +1,14 @@
 #pragma once
 
-#include "ServerParticipant.h"
+#include "IUser.h"
 
 
 class CUserManager
 {
 public:
-	void joinUser(ServerParticipant_Ptr user);
-	void leaveUser(ServerParticipant_Ptr user);
+	void joinUser(iUser_Ptr user);
+	void leaveUser(iUser_Ptr user);
 private:
-	set<ServerParticipant_Ptr> m_users;
+	set<iUser_Ptr> m_users;
 };
 

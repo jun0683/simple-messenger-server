@@ -1,6 +1,7 @@
 #encoding:UTF-8
 
 import socket
+import struct
 
 HOST = 'localhost'
 PORT = 50000
@@ -20,8 +21,11 @@ class autoClient:
 		sendData['type'] = 1
 		sendData['loginID'] = 'test@test.com'
 		sendData['password'] = '1234'
+
+		length = struct.pack("I", len(str(sendData)))
+		print length
 		self.s.connect((HOST, PORT))
-		self.s.sendall(str(sendData))
+		self.s.sendall(length+str(sendData))
 		data = self.s.recv(1024)
 		print data
 		print('login')
