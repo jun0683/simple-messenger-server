@@ -1,3 +1,5 @@
+void dbtest();
+
 //蜡历
 void testuserInfo(CDBManager &dbmanager)
 {
@@ -65,7 +67,7 @@ void testUserFriends(CDBManager &dbmanager)
 	CTimer timer;
 	timer.startTimer();
 	cout << "user " << 1 << " friends" << endl;
-	std::for_each(friends->begin(),friends->end(),[=](userInfo_ptr userinfo)
+	std::for_each(friends->begin(),friends->end(),[=](UserInfo_Ptr userinfo)
 	{
 		tcout << userinfo->userID << L" " << userinfo->loginID << L" " << userinfo->pw << L" " << userinfo->userName  << endl;
 	});
@@ -130,7 +132,7 @@ void testUserFriendsLoginState(CDBManager &dbmanager)
 	CTimer timer;
 	timer.startTimer();
 	tcout << "user " << 1 << " friends" << endl;
-	std::for_each(friends->begin(),friends->end(),[=,&dbmanager](userInfo_ptr userinfo)
+	std::for_each(friends->begin(),friends->end(),[=,&dbmanager](UserInfo_Ptr userinfo)
 	{
 		bool loginstate = dbmanager.isUserLogin(userinfo->userID);
 		tcout << userinfo->userID << "login state : " << loginstate << endl;
@@ -147,7 +149,7 @@ void testCreatechattingRoom(CDBManager &dbmanager)
 	
 	userinfos_ptr friends = dbmanager.userFriends(testUserID);
 	vector<int> friendsIDs;
-	std::for_each(friends->begin(),friends->end(),[=,&friendsIDs](userInfo_ptr userinfo)
+	std::for_each(friends->begin(),friends->end(),[=,&friendsIDs](UserInfo_Ptr userinfo)
 	{
 		friendsIDs.push_back(userinfo->userID);
 	});
@@ -225,4 +227,24 @@ void testdelFriend(CDBManager &dbmanater)
 		tcout << "模备 昏力 己傍" << endl;
 	else
 		tcout << "模备 昏力 角菩" << endl;
+}
+
+void dbtest()
+{
+	CDBManager dbmanager;
+	dbmanager.dbLogin();
+	testuserInfo(dbmanager);
+	testUserID(dbmanager);
+	testUserLogState(dbmanager);
+	testUserFriends(dbmanager);
+	testUserFriendsLoginState(dbmanager);
+	testCreatechattingRoom(dbmanager);
+	testSendChattingMessage(dbmanager);
+	testRegistNewUser(dbmanager);
+	testisValidUser(dbmanager);
+	testChageUserInfo(dbmanager);
+	testUserWithdraw(dbmanager);
+	testAddfriend(dbmanager);
+	testfindUserID(dbmanager);
+	testdelFriend(dbmanager);
 }

@@ -17,9 +17,9 @@ public:
 	CUserInfo(int userID,tstring loginID,tstring pw,tstring userName);
 	~CUserInfo(void);
 };
-typedef shared_ptr<CUserInfo> userInfo_ptr;
-typedef vector<userInfo_ptr> userInfos;
-typedef shared_ptr<userInfos> userinfos_ptr;
+typedef boost::shared_ptr<CUserInfo> UserInfo_Ptr;
+typedef vector<UserInfo_Ptr> userInfos;
+typedef boost::shared_ptr<userInfos> userinfos_ptr;
 
 class UserInfoBCA 
 {

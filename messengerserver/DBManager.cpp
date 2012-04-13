@@ -95,7 +95,7 @@ userinfos_ptr CDBManager::userFriends(int userID)
 	for (; print_it != view.end(); ++print_it)
 
 	{
-		userInfo_ptr user (new CUserInfo(*print_it));
+		UserInfo_Ptr user (new CUserInfo(*print_it));
 		friends->push_back(user);
 	}
 
