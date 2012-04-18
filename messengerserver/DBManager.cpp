@@ -2,8 +2,11 @@
 #include "DBManager.h"
 #include "UserInfo.h"
 
+CDBManager* CDBManager::inst = NULL;
+
 CDBManager::CDBManager(void)
 {
+	dbLogin();
 }
 
 

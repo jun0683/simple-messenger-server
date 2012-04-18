@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 #include "User.h"
 #include "UserInfo.h"
-#include "json_spirit.h"
 
-using namespace json_spirit;
+
+
 
 const wmValue& find_value( const wmObject& obj, const tstring& name  )
 {
@@ -18,7 +18,8 @@ const wmValue& find_value( const wmObject& obj, const tstring& name  )
 
 CUser::CUser(boost::asio::io_service& io_service,CUserManager &userManager)
 	:m_socket(io_service),
-	m_userManager(userManager)
+	m_userManager(userManager),
+	m_userInfo(new CUserInfo)
 {
 }
 
@@ -70,10 +71,28 @@ void CUser::paring( tstring &str )
 	wmValue value;
 	read(str,value);
 	const wmObject& obj = value.get_obj();
-	int type1			=	find_value( obj,L"type" ).get_int();
+	int packetType	=	find_value( obj,L"type" ).get_int();
+	switch(packetType)
+	{
+	case LOGIN:
+		{
+			if (login(obj))
+				tcout ;
+			else
+				tcout ;
+
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+bool CUser::login( const wmObject& obj )
+{
 	tstring loginID		=	find_value( obj,L"loginID").get_str();
 	tstring password	=	find_value( obj,L"password").get_str();
-	tstring message		=	find_value( obj,L"message").get_str();
-	tcout << "parsing " << endl;
-	tcout << message << endl;
+	CDBManager::getInstance()->getUserInfo(loginID,password,*m_userInfo);
+
+	return false;
 }
