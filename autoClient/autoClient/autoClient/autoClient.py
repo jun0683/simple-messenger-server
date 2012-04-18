@@ -21,7 +21,7 @@ class autoClient:
 		sendData = {}
 		sendData["type"] = 1
 		sendData["loginID"] = "test@test.com"
-		sendData["password"] = "123"
+		sendData["password"] = "1234"
 		sendData["message"] = "하이"
 
 		length = struct.pack("I", len(json.dumps(sendData)))
@@ -29,7 +29,10 @@ class autoClient:
 		self.s.connect((HOST, PORT))
 		self.s.sendall(length+json.dumps(sendData))
 		data = self.s.recv(1024)
-		print data
+		print data[4:]
+		print json.loads(data)
+		#print dic["message"]
+		#print data
 		print('login')
 
     def logout(self):

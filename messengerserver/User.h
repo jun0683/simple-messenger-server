@@ -16,16 +16,20 @@ public:
 		return m_socket;
 	}
 	void start();
+
+	void readHeader();
+
 	void handleReadHeader(const boost::system::error_code& error);
 	void handleReadBody(const boost::system::error_code& error);
 
 	void paring( tstring &str );
-	bool login( const wmObject& obj );
+	void login( const wmObject& obj );
 private:
 	boost::asio::ip::tcp::socket m_socket;
 	UserInfo_Ptr m_userInfo;
 	CUserManager &m_userManager;
-	CDataBuffer m_buffer;
+	CDataBuffer m_readBuffer;
+	CDataBuffer m_writeBuffer;
 };
 
 typedef boost::shared_ptr<CUser> User_Ptr;
