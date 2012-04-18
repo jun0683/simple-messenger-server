@@ -77,10 +77,9 @@ void CUser::paring( tstring &str )
 	case LOGIN:
 		{
 			if (login(obj))
-				tcout ;
+				tcout << L"로그인 성공" << endl;
 			else
-				tcout ;
-
+				tcout << L"로그인 실패" << endl;
 		}
 		break;
 	default:
@@ -92,7 +91,6 @@ bool CUser::login( const wmObject& obj )
 {
 	tstring loginID		=	find_value( obj,L"loginID").get_str();
 	tstring password	=	find_value( obj,L"password").get_str();
-	CDBManager::getInstance()->getUserInfo(loginID,password,*m_userInfo);
 
-	return false;
+	return CDBManager::getInstance()->getUserInfo(loginID,password,*m_userInfo);
 }

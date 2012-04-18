@@ -14,14 +14,13 @@ int main(int argc, char* argv[])
 	try
 	{
 		setlocale(LC_ALL, "");
-		dbtest();
 		
-		/*boost::asio::io_service io_service;
+		boost::asio::io_service io_service;
 		boost::asio::ip::tcp::endpoint endpoint(tcp::v4(), PORT);
 		vector<MessengerServer_Ptr> serverArray;
 		MessengerServer_Ptr server(new CMessengerServer(io_service,endpoint));
 		serverArray.push_back(server);
-		io_service.run();*/
+		io_service.run();
 	}
 	catch(std::exception &e)
 	{

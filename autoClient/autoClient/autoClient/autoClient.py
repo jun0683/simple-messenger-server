@@ -21,7 +21,7 @@ class autoClient:
 		sendData = {}
 		sendData["type"] = 1
 		sendData["loginID"] = "test@test.com"
-		sendData["password"] = "1234"
+		sendData["password"] = "123"
 		sendData["message"] = "하이"
 
 		length = struct.pack("I", len(json.dumps(sendData)))
