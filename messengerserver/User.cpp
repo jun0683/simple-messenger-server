@@ -5,9 +5,9 @@
 
 using namespace json_spirit;
 
-const mValue& find_value( const mObject& obj, const string& name  )
+const wmValue& find_value( const wmObject& obj, const tstring& name  )
 {
-	mObject::const_iterator i = obj.find( name );
+	wmObject::const_iterator i = obj.find( name );
 
 	assert( i != obj.end() );
 	assert( i->first == name );
@@ -56,21 +56,24 @@ void CUser::handleReadBody(const boost::system::error_code& error)
 	if (!error)
 	{
 		
-		string str(m_buffer.body(),m_buffer.body_length());
-		tcout << "recv body :" << str << endl;
-		paring(str);
+		tstring bufferStr(m_buffer.body(),m_buffer.body()+m_buffer.body_length());
+		tcout << "recv body :" << bufferStr << endl;
+
+		paring(bufferStr);
 
 		m_userManager.leaveUser(shared_from_this());
 	}
 }
 
-void CUser::paring( string &str )
+void CUser::paring( tstring &str )
 {
-	mValue value;
+	wmValue value;
 	read(str,value);
-	const mObject& obj = value.get_obj();
-	int type1			=	find_value( obj,"type" ).get_int();
-	string loginID		=	find_value( obj,"loginID").get_str();
-	string password		=	find_value( obj,"password").get_str();
-	string meessage		=	find_value( obj,"message").get_str();
+	const wmObject& obj = value.get_obj();
+	int type1			=	find_value( obj,L"type" ).get_int();
+	tstring loginID		=	find_value( obj,L"loginID").get_str();
+	tstring password	=	find_value( obj,L"password").get_str();
+	tstring message		=	find_value( obj,L"message").get_str();
+	tcout << "parsing " << endl;
+	tcout << message << endl;
 }

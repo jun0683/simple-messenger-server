@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
 	try
 	{
 		//dbtest();
+		setlocale(LC_ALL, "");
 		boost::asio::io_service io_service;
 		boost::asio::ip::tcp::endpoint endpoint(tcp::v4(), PORT);
 		vector<MessengerServer_Ptr> serverArray;

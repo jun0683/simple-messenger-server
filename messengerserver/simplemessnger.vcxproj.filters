@@ -51,10 +51,10 @@
     <ClCompile Include="UserManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="iUser.cpp">
+    <ClCompile Include="DataBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataBuffer.cpp">
+    <ClCompile Include="IUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

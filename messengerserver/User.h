@@ -17,7 +17,7 @@ public:
 	void handleReadHeader(const boost::system::error_code& error);
 	void handleReadBody(const boost::system::error_code& error);
 
-	void paring( string &str );
+	void paring( tstring &str );
 
 private:
 	boost::asio::ip::tcp::socket m_socket;

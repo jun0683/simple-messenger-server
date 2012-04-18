@@ -155,7 +155,7 @@
     <ClCompile Include="MakeChatingRoomPacket.cpp" />
     <ClCompile Include="MessengerServer.cpp" />
     <ClCompile Include="Packet.cpp" />
-    <ClCompile Include="iUser.cpp" />
+    <ClCompile Include="IUser.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
