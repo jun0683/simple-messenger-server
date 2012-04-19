@@ -25,12 +25,13 @@ class autoClient:
 		sendData["message"] = "하이"
 
 		length = struct.pack("I", len(json.dumps(sendData)))
-		print length
 		self.s.connect((HOST, PORT))
 		self.s.sendall(length+json.dumps(sendData))
 		data = self.s.recv(1024)
-		print data[4:]
-		print json.loads(data)
+		print 'recv data :'
+		print data[4:].decode('utf-8')
+		recvjson = json.loads(data[4:].decode('utf-8'))
+		print recvjson['message']
 		#print dic["message"]
 		#print data
 		print('login')

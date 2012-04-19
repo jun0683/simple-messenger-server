@@ -95,7 +95,7 @@ void CUser::login( const wmObject& obj )
 		string name;
 		encode_utf8(wname,name);
 		obj["message"] = name;
-		string writeStr = write(obj);
+		string writeStr = write(obj,raw_utf8);
 		/*string writeStr;
 		encode_utf8(ws, writeStr);*/
 
