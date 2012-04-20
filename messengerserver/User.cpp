@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "User.h"
 #include "UserInfo.h"
+#include "DBManager.h"
 
 const wmValue& find_value( const wmObject& obj, const tstring& name  )
 {
@@ -50,6 +51,10 @@ void CUser::handleReadHeader(const boost::system::error_code& error)
 			boost::bind(&CUser::handleReadBody, shared_from_this(),
 			boost::asio::placeholders::error));
 	}
+	else
+	{
+		m_userManager.leaveUser(shared_from_this());
+	}
 }
 
 void CUser::handleReadBody(const boost::system::error_code& error)
@@ -61,6 +66,10 @@ void CUser::handleReadBody(const boost::system::error_code& error)
 		tcout << "recv body :" << endl << bufferStr << endl;
 
 		paring(bufferStr);
+	}
+	else
+	{
+		m_userManager.leaveUser(shared_from_this());
 	}
 }
 
@@ -84,34 +93,47 @@ void CUser::login( const wmObject& obj )
 {
 	tstring loginID		=	find_value( obj,L"loginID").get_str();
 	tstring password	=	find_value( obj,L"password").get_str();
-
-	if (CDBManager::getInstance()->getUserInfo(loginID,password,*m_userInfo))
+	
+	if (DBMgr->getUserInfo(loginID,password,*m_userInfo))
 	{
-		mObject obj;
-
-		obj["session" ] = 1;
-		obj["type"] = 1;
 		tstring wname = m_userInfo->userName;
 		string name;
 		encode_utf8(wname,name);
+
+		mObject obj;
+		obj["session" ] = 1;
+		obj["type"] = 1;
 		obj["message"] = name;
 		string writeStr = write(obj,raw_utf8);
-		/*string writeStr;
-		encode_utf8(ws, writeStr);*/
+		
+		makeWriteBuffer(writeStr);
 
-
-		memcpy(m_writeBuffer.body(),writeStr.c_str(),writeStr.size());
-		m_writeBuffer.body_length(writeStr.size());
-		m_writeBuffer.encode_header();
 		boost::asio::async_write(m_socket,
 			boost::asio::buffer(m_writeBuffer.data(), m_writeBuffer.length()),
 			boost::bind( &CUser::readHeader, shared_from_this()));
-		tcout << L"로그인 성공" << endl;
 		tcout << writeStr << endl;
+		
+		tcout << L"로그인 " << DBMgr->userLogin(m_userInfo->userID) << endl;
+
+
+		userinfos_ptr friends = DBMgr->userFriends(m_userInfo->userID);
+		tcout << L"user " << m_userInfo->userID << L" friends" << endl;
+		std::for_each(friends->begin(),friends->end(),[=](UserInfo_Ptr userinfo)
+		{
+			tcout << userinfo->userID << L" " << userinfo->loginID << L" " << userinfo->pw << L" " << userinfo->userName  << endl;
+		});
+
 	}
 	else
 	{
 		tcout << L"로그인 실패" << endl;
 		m_userManager.leaveUser(shared_from_this());
 	}
+}
+
+void CUser::makeWriteBuffer( string &writeStr )
+{
+	memcpy(m_writeBuffer.body(),writeStr.c_str(),writeStr.size());
+	m_writeBuffer.body_length(writeStr.size());
+	m_writeBuffer.encode_header();
 }

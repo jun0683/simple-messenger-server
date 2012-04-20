@@ -18,6 +18,5 @@ using boost::asio::ip::tcp;
 using namespace json_spirit;
 
 #include "DNSStr.h"
-#include "DBManager.h"
 
 

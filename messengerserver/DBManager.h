@@ -26,6 +26,7 @@ public:
 	static void Destroyer()
 	{
 		delete inst;
+		inst = NULL;
 	}
 
 private:
@@ -93,3 +94,4 @@ public:
 	bool			delToFriendsWithEachOther( int userID, int friendID );
 };
 
+#define DBMgr CDBManager::getInstance() 

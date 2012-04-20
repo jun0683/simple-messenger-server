@@ -20,7 +20,7 @@ class autoClient:
     def login(self):
 		sendData = {}
 		sendData["type"] = 1
-		sendData["loginID"] = "test@test.com"
+		sendData["loginID"] = "test1@test.com"
 		sendData["password"] = "1234"
 		sendData["message"] = "하이"
 
