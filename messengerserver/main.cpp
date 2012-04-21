@@ -1,41 +1,12 @@
 #include "StdAfx.h"
-#include "DBManager.h"
-#include "Timer.h"
-#include "UserInfo.h"
+
 #include "testDBCode.h"
 #include "MessengerServer.h"
+#include "ServerCommand.h"
 
 
 int PORT = 50000;
 
-
-class CInput
-{
-public:
-	CInput(boost::asio::io_service& io)
-		:m_io_service(io)
-	{
-
-	};
-	void operator()()
-	{
-		string inputbuffer;
-
-		while (true)
-		{
-			std::cout <<">>> ";
-			std::getline(std::cin, inputbuffer);
-			if (inputbuffer == "exit")
-			{
-				m_io_service.stop();
-				break;;
-			}
-		}
-	}
-	~CInput(){};
-private:
-	boost::asio::io_service& m_io_service;
-};
 
 
 int main(int argc, char* argv[])
@@ -52,8 +23,8 @@ int main(int argc, char* argv[])
 		MessengerServer_Ptr server(new CMessengerServer(io_service,endpoint));
 		serverArray.push_back(server);
 
-		CInput input(io_service);
-		boost::thread inputThread(input);
+		CServerCommand serverCommand(io_service,server);
+		boost::thread inputThread(serverCommand);
 
 		io_service.run();
 		inputThread.join();

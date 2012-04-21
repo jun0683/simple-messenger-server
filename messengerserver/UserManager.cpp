@@ -13,3 +13,8 @@ void CUserManager::leaveUser(iUser_Ptr user)
 {
 	m_users.erase(user);
 }
+
+int CUserManager::getCurrentUserCount()
+{
+	return m_users.size();
+}

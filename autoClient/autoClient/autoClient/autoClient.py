@@ -12,7 +12,7 @@ class autoClient:
     def __init__(self):
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.login()
-		self.logout()
+		#self.logout()
 		self.makeChattingRoom()
 		self.inviteChattingRoom()
 		self.leaveChattingRoom()

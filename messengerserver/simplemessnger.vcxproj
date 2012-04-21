@@ -150,12 +150,14 @@
     <ClCompile Include="CattingMessagePacket.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
     <ClCompile Include="DBManager.cpp" />
+    <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="LoginPacket.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MakeChatingRoomPacket.cpp" />
     <ClCompile Include="MessengerServer.cpp" />
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="IUser.cpp" />
+    <ClCompile Include="ServerCommand.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -170,12 +172,14 @@
     <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="DBManager.h" />
     <ClInclude Include="DNSStr.h" />
+    <ClInclude Include="ICommand.h" />
     <ClInclude Include="LoginPacket.h" />
     <ClInclude Include="MakeChatingRoomPacket.h" />
     <ClInclude Include="MessengerErorrCode.h" />
     <ClInclude Include="MessengerServer.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="IUser.h" />
+    <ClInclude Include="ServerCommand.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="testDBCode.h" />
     <ClInclude Include="Timer.h" />

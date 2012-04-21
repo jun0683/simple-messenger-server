@@ -1,3 +1,6 @@
+#include "Timer.h"
+#include "DBManager.h"
+
 void dbtest();
 
 //À¯Àú

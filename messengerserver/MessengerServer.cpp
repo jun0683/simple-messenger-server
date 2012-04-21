@@ -15,15 +15,6 @@ CMessengerServer::~CMessengerServer(void)
 {
 }
 
-
-int CMessengerServer::Run(void)
-{
-
-	
-	return 0;
-}
-
-
 void CMessengerServer::accept(User_Ptr user,const boost::system::error_code& error)
 {
 	if (!error)
@@ -39,10 +30,15 @@ void CMessengerServer::accept(User_Ptr user,const boost::system::error_code& err
 	
 }
 
-
 void CMessengerServer::newUserAccept(void)
 {
 	User_Ptr new_user(new CUser(m_io_service, m_userManager));
 	m_acceptor.async_accept(new_user->socket(),
 		boost::bind(&CMessengerServer::accept, this, new_user,boost::asio::placeholders::error));
+}
+
+
+int CMessengerServer::getCurrentUserCount(void)
+{
+	return m_userManager.getCurrentUserCount();
 }
