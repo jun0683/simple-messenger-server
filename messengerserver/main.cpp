@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	{
 		setlocale(LC_ALL, "");
 
-		/*boost::asio::io_service io_service;
+		boost::asio::io_service io_service;
 		boost::asio::ip::tcp::endpoint endpoint(tcp::v4(), PORT);
 
 		vector<MessengerServer_Ptr> serverArray;
@@ -27,9 +27,7 @@ int main(int argc, char* argv[])
 		boost::thread inputThread(serverCommand);
 
 		io_service.run();
-		inputThread.join();*/
-
-		dbtest();
+		inputThread.join();
 		
 	}
 	catch(std::exception &e)

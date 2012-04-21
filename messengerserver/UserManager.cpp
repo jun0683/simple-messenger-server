@@ -3,13 +3,13 @@
 
 
 
-void CUserManager::joinUser(iUser_Ptr user)
+void CUserManager::joinUser(IUser_Ptr user)
 {
 	m_users.insert(user);
 }
 
 
-void CUserManager::leaveUser(iUser_Ptr user)
+void CUserManager::leaveUser(IUser_Ptr user)
 {
 	m_users.erase(user);
 }

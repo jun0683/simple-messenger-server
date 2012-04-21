@@ -6,10 +6,10 @@
 class CUserManager
 {
 public:
-	void joinUser(iUser_Ptr user);
-	void leaveUser(iUser_Ptr user);
+	void joinUser(IUser_Ptr user);
+	void leaveUser(IUser_Ptr user);
 	int getCurrentUserCount();
 private:
-	set<iUser_Ptr> m_users;
+	set<IUser_Ptr> m_users;
 };
 

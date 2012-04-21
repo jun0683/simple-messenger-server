@@ -101,28 +101,15 @@ void CUser::login( const wmObject& obj )
 		encode_utf8(wname,name);
 
 		mObject obj;
-		obj["session" ] = 1;
-		obj["type"] = 1;
+		obj["type"] = LOGIN;
+		obj["userID"] = m_userInfo->userID;
 		obj["message"] = name;
 		string writeStr = write(obj,raw_utf8);
 		
-		makeWriteBuffer(writeStr);
+		sendPacket(writeStr);
 
-		boost::asio::async_write(m_socket,
-			boost::asio::buffer(m_writeBuffer.data(), m_writeBuffer.length()),
-			boost::bind( &CUser::readHeader, shared_from_this()));
 		tcout << writeStr << endl;
-		
 		tcout << L"·Î±×ÀÎ " << DBMgr->userLogin(m_userInfo->userID) << endl;
-
-
-		userinfos_ptr friends = DBMgr->userFriends(m_userInfo->userID);
-		tcout << L"user " << m_userInfo->userID << L" friends" << endl;
-		std::for_each(friends->begin(),friends->end(),[=](UserInfo_Ptr userinfo)
-		{
-			tcout << userinfo->userID << L" " << userinfo->loginID << L" " << userinfo->pw << L" " << userinfo->userName  << endl;
-		});
-
 	}
 	else
 	{
@@ -131,9 +118,28 @@ void CUser::login( const wmObject& obj )
 	}
 }
 
-void CUser::makeWriteBuffer( string &writeStr )
+void CUser::makeWriteBuffer( const string &writeStr )
 {
 	memcpy(m_writeBuffer.body(),writeStr.c_str(),writeStr.size());
 	m_writeBuffer.body_length(writeStr.size());
 	m_writeBuffer.encode_header();
+}
+
+void CUser::sendPacket( const string& packet )
+{
+	makeWriteBuffer(packet);
+
+	boost::asio::async_write(m_socket,
+		boost::asio::buffer(m_writeBuffer.data(), m_writeBuffer.length()),
+		boost::bind( &CUser::readHeader, shared_from_this()));
+}
+
+void CUser::friendList()
+{
+	userinfos_ptr friends = DBMgr->userFriends(m_userInfo->userID);
+	tcout << L"user " << m_userInfo->userID << L" friends" << endl;
+	std::for_each(friends->begin(),friends->end(),[=](UserInfo_Ptr userinfo)
+	{
+		tcout << userinfo->userID << L" " << userinfo->loginID << L" " << userinfo->pw << L" " << userinfo->userName  << endl;
+	});
 }

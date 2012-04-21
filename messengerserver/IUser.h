@@ -5,4 +5,4 @@ public:
 	virtual ~IUser() {};
 };
 
-typedef boost::shared_ptr<IUser> iUser_Ptr;
+typedef boost::shared_ptr<IUser> IUser_Ptr;

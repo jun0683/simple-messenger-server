@@ -25,7 +25,9 @@ public:
 	void paring( tstring &str );
 	void login( const wmObject& obj );
 
-	void makeWriteBuffer( string &writeStr );
+	void sendPacket(const string& packet );
+
+	void makeWriteBuffer(const string &writeStr );
 
 private:
 	boost::asio::ip::tcp::socket m_socket;
