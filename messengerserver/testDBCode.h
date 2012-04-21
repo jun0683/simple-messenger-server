@@ -204,32 +204,55 @@ void testAddfriend(CDBManager &dbmanager)
 	}
 }
 
-void testfindUserID(CDBManager &dbmanater)
+void testfindUserID(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
 	tstring testUserLoginID = L"test100@test.com";
 	int findUserID = 0;
-	if(dbmanater.findUserID(testUserLoginID,findUserID))
+	if(dbmanager.findUserID(testUserLoginID,findUserID))
 		tcout << L"찾는 유저 아이디 : " << testUserLoginID << L"있음 아이디 : " << findUserID << endl;
 	else
 		tcout << L"찾는 유저 아이디 : " << testUserLoginID << L"없음" << endl;
 	testUserLoginID = L"test@test.com";
-	if(dbmanater.findUserID(testUserLoginID,findUserID))
+	if(dbmanager.findUserID(testUserLoginID,findUserID))
 		tcout << L"찾는 유저 아이디 : " << testUserLoginID << L"있음 아이디 : " << findUserID << endl;
 	else
 		tcout << L"찾는 유저 아이디 : " << testUserLoginID << L"없음" << endl;
 
 }
 
-void testdelFriend(CDBManager &dbmanater)
+void testdelFriend(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
 	int testuserID = 1;
 	int testFriendID = 14;
-	if(dbmanater.delToFriendsWithEachOther(testuserID,testFriendID))
+	if(dbmanager.delToFriendsWithEachOther(testuserID,testFriendID))
 		tcout << L"친구 삭제 성공" << endl;
 	else
 		tcout << L"친구 삭제 실패" << endl;
+}
+
+void testMessage(CDBManager &dbmanager ) 
+{
+	FuctionTimer timer;
+	int testFromUserID = 1;
+	int testToUserID = 7;
+	tstring message = L"하이 반갑긔 hi~";
+	int messageID = 0;
+	if (dbmanager.sendMessage(testFromUserID,testToUserID,message,messageID))
+		tcout << L"쪽지 등록 성공 messageID : " << messageID << endl;
+	else
+		tcout << L"쪽지 등록 실패" << endl;
+
+	if (dbmanager.deliveryedMessage(messageID))
+	{
+		tcout << L"쪽지 전송 성공 messageID : " << messageID << endl;
+	} 
+	else
+	{
+		tcout << L"쪽지 아이뒤 오류" << endl;
+	}
+
 }
 
 void dbtest()
@@ -248,5 +271,6 @@ void dbtest()
 	testAddfriend(*CDBManager::getInstance());
 	testfindUserID(*CDBManager::getInstance());
 	testdelFriend(*CDBManager::getInstance());
+	testMessage(*CDBManager::getInstance());
 	CDBManager::Destroyer();
 }

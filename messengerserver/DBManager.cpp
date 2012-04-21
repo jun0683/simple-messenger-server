@@ -320,6 +320,30 @@ bool CDBManager::delToFriendsWithEachOther( int userID, int friendID )
 	return delFriend(userID,friendID) && delFriend(friendID,userID);
 }
 
+bool CDBManager::sendMessage( int fromUserID, int toUserID, tstring message, int& messageID )
+{
+	DBView<EmptyRow,SendMessageParams> view(L"{? = call sendMessage(?,?,?)}", EmptyBCA(),L"",SendMessageBPA());
+	DBView<EmptyRow,SendMessageParams>::sql_iterator print_it = view.begin();
+	print_it.Params().fromUserID = fromUserID;
+	print_it.Params().toUserID = toUserID;
+	print_it.Params().messageStr = message;
+	*print_it = EmptyRow();
+	print_it.MoreResults();
 
+	DBView<SendMessageIDRow,EmptyParams> IDview(L"SELECT @@IDENTITY as 'MessageID'", SendMessageIDBCA(),L"",EmptyBPA<EmptyParams>());
+	DBView<SendMessageIDRow,EmptyParams>::sql_iterator read_it  = IDview.begin();
+	for ( ; read_it != IDview.end(); ++read_it)
+		messageID = read_it->messageID;
 
+	return print_it.Params().returnvalue;
+}
 
+bool CDBManager::deliveryedMessage( int messageID )
+{
+	DBView<EmptyRow,DeliveryedMessageParams> view(L"{? = call deliveredMessage(?)}", EmptyBCA(),L"",DeliveryedMessageBPA());
+	DBView<EmptyRow,DeliveryedMessageParams>::sql_iterator print_it = view.begin();
+	print_it.Params().messageID = messageID;
+	*print_it = EmptyRow();
+	print_it.MoreResults();
+	return print_it.Params().returnvalue;
+}

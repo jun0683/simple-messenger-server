@@ -92,6 +92,16 @@ public:
 	bool			findUserID( tstring &userLoginID, __out int &findUserID );
 	bool			delFriend( int userID, int friendID );
 	bool			delToFriendsWithEachOther( int userID, int friendID );
+
+
+	//////////////////////////////////////////////////////////////////////////
+	/// 쪽지
+	//////////////////////////////////////////////////////////////////////////
+
+	///쪽지 전송
+	bool			sendMessage( int fromUserID, int toUserID, tstring message, int& messageID );
+	///쪽지 전송 확인
+	bool			deliveryedMessage( int messageID );
 };
 
 #define DBMgr CDBManager::getInstance() 
