@@ -96,14 +96,13 @@ void CUser::login( const wmObject& obj )
 	
 	if (DBMgr->getUserInfo(loginID,password,*m_userInfo))
 	{
-		tstring wname = m_userInfo->userName;
 		string name;
-		encode_utf8(wname,name);
+		encode_utf8(m_userInfo->userName,name);
 
 		mObject obj;
 		obj["type"] = LOGIN;
 		obj["userID"] = m_userInfo->userID;
-		obj["message"] = name;
+		obj["name"] = name;
 		string writeStr = write(obj,raw_utf8);
 		
 		sendPacket(writeStr);

@@ -25,6 +25,8 @@ public:
 	void paring( tstring &str );
 	void login( const wmObject& obj );
 
+	void friendList();
+
 	void sendPacket(const string& packet );
 
 	void makeWriteBuffer(const string &writeStr );
