@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="simplemessnger">
+</Property><Property Name="솔루션 파일" Value="C:\Users\Administrator\Desktop\simple-messenger\messengerserver\simplemessnger.sln">
+</Property><Property Name="Date" Value="2012년 4월 13일 금요일">
+</Property><Property Name="Time" Value="오후 17:42:36">
+</Property></Properties><Event ErrorLevel="0" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="Converting project file 'C:\Users\Administrator\Desktop\simple-messenger\messengerserver\json_spirit\json_spirit.vcproj'.">
+</Event><Event ErrorLevel="1" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="1" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="Done converting to new project file 'C:\Users\Administrator\Desktop\simple-messenger\messengerserver\json_spirit\json_spirit.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="json_spirit" Source="json_spirit\json_spirit.vcproj" Description="Converted">
+</Event></UpgradeLog>

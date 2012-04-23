@@ -17,9 +17,9 @@ public:
 	CUserInfo(int userID,tstring loginID,tstring pw,tstring userName);
 	~CUserInfo(void);
 };
-typedef shared_ptr<CUserInfo> userInfo_ptr;
-typedef vector<userInfo_ptr> userInfos;
-typedef shared_ptr<userInfos> userinfos_ptr;
+typedef boost::shared_ptr<CUserInfo> UserInfo_Ptr;
+typedef vector<UserInfo_Ptr> userInfos;
+typedef boost::shared_ptr<userInfos> userinfos_ptr;
 
 class UserInfoBCA 
 {
@@ -150,10 +150,30 @@ public:
 	}
 };
 
+class SendMessageIDRow
+{
+public:
+	int messageID;
+};
+
+class SendMessageIDBCA 
+{
+public:
+	void operator()(BoundIOs &cols, SendMessageIDRow &row)
+	{
+		cols[L"MessageID"]	>> row.messageID;
+	}
+};
+
 //////////////////////////////////////////////////////////////////////////
 /// BPA
 /// Bind Params Addresses
 //////////////////////////////////////////////////////////////////////////
+
+class EmptyParams
+{
+public:
+};
 
 class IDAndPWParams
 {
@@ -418,5 +438,43 @@ public:
 		params[0] >> paramObj.returnvalue;
 		params[1] << paramObj.userID;
 		params[2] << paramObj.friendID;
+	}
+};
+
+class SendMessageParams
+{
+public:
+	int returnvalue;
+	int fromUserID;    
+	int toUserID;
+	tstring messageStr;
+};
+
+class SendMessageBPA
+{
+public:
+	void operator()(BoundIOs &params, SendMessageParams &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.fromUserID;
+		params[2] << paramObj.toUserID;
+		params[3] << paramObj.messageStr;
+	}
+};
+
+class DeliveryedMessageParams
+{
+public:
+	int returnvalue;
+	int messageID;
+};
+
+class DeliveryedMessageBPA
+{
+public:
+	void operator()(BoundIOs &params, DeliveryedMessageParams &paramObj)
+	{
+		params[0] >> paramObj.returnvalue;
+		params[1] << paramObj.messageID;
 	}
 };

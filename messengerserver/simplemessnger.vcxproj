@@ -89,6 +89,7 @@
       <DisableSpecificWarnings>4819;4204;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>json_spirit/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,31 +148,53 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CattingMessagePacket.cpp" />
+    <ClCompile Include="DataBuffer.cpp" />
     <ClCompile Include="DBManager.cpp" />
+    <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="LoginPacket.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MakeChatingRoomPacket.cpp" />
+    <ClCompile Include="MessengerServer.cpp" />
     <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="IUser.cpp" />
+    <ClCompile Include="ServerCommand.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="User.cpp" />
     <ClCompile Include="UserInfo.cpp" />
+    <ClCompile Include="UserManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CattingMessagePacket.h" />
+    <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="DBManager.h" />
     <ClInclude Include="DNSStr.h" />
-    <ClInclude Include="dtlexam.h" />
+    <ClInclude Include="ICommand.h" />
     <ClInclude Include="LoginPacket.h" />
     <ClInclude Include="MakeChatingRoomPacket.h" />
     <ClInclude Include="MessengerErorrCode.h" />
+    <ClInclude Include="MessengerServer.h" />
     <ClInclude Include="Packet.h" />
+    <ClInclude Include="IUser.h" />
+    <ClInclude Include="ServerCommand.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="testDBCode.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="User.h" />
     <ClInclude Include="UserInfo.h" />
+    <ClInclude Include="UserManager.h" />
+    <ClInclude Include="utf8.h" />
+    <ClInclude Include="utf8\checked.h" />
+    <ClInclude Include="utf8\core.h" />
+    <ClInclude Include="utf8\unchecked.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="json_spirit\json_spirit.vcxproj">
+      <Project>{be262a86-cc26-4b25-a877-883ed2688cec}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,13 +1,23 @@
 #include <iostream>
-#include <DTL.h>
+#include <boost/bind.hpp>
+#include <boost/thread.hpp>
 #include <boost/chrono.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
+#include <boost/asio.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
-#include "dtlexam.h"
-#include "DNSStr.h"
-//#include "MessengerErorrCode.h"
+#include "json_spirit.h"
+#include <DTL.h>
+
+#include "utf8.h"
+
 
 using namespace dtl;
 using namespace std;
+using boost::asio::ip::tcp;
+using namespace json_spirit;
+
+#include "DNSStr.h"
+
+
