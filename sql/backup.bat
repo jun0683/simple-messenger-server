@@ -1,0 +1,1 @@
+"c:\Program Files (x86)\Microsoft SQL Server\90\Tools\Publishing\1.4\SqlPubWiz.exe" script -S localhost -d messenger %cd%\backup.sql -targetserver 2005 -f -schemaonly
