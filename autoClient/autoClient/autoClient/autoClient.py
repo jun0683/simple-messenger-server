@@ -9,7 +9,7 @@ PORT = 50000
 
 class autoClient:
 
-    def __init__(self):
+	def __init__(self):
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.login()
 		#self.logout()
@@ -17,34 +17,46 @@ class autoClient:
 		self.inviteChattingRoom()
 		self.leaveChattingRoom()
 
-    def login(self):
+	def recvPacket(self):
+		length = self.readHead()
+		return self.readBody(length)
+
+	def readHead(self):
+		data = self.s.recv(4)
+		return struct.unpack("I",data)[0]
+		
+	def readBody(self,length):
+		data = self.s.recv(length)
+		return json.loads(data.decode('utf-8'))
+
+	def makeLoginPacket(self):
 		sendData = {}
 		sendData["type"] = 1
 		sendData["loginID"] = "test1@test.com"
 		sendData["password"] = "1234"
 		sendData["message"] = "하이"
-
 		length = struct.pack("I", len(json.dumps(sendData)))
+		return length+json.dumps(sendData)
+
+	def login(self):
+		
 		self.s.connect((HOST, PORT))
-		self.s.sendall(length+json.dumps(sendData))
-		data = self.s.recv(1024)
-		print 'recv data :'
-		print data[4:].decode('utf-8')
-		recvjson = json.loads(data[4:].decode('utf-8'))
-		print recvjson['message']
-		#print dic["message"]
-		#print data
+		self.s.sendall(self.makeLoginPacket())
+		recvjson = self.recvPacket()
+		print recvjson['name']
+		print recvjson['userID']
+
 		print('login')
 
-    def logout(self):
+	def logout(self):
 		self.s.close()
 		print('logout')
 
-    def makeChattingRoom(self):
-        print('makeChattingRoom')
+	def makeChattingRoom(self):
+		print('makeChattingRoom')
 
-    def inviteChattingRoom(self):
-        print('inviteChattingRoom')
+	def inviteChattingRoom(self):
+		print('inviteChattingRoom')
 
-    def leaveChattingRoom(self):
-        print('leaveChattingRoom')
+	def leaveChattingRoom(self):
+		print('leaveChattingRoom')

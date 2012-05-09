@@ -42,3 +42,9 @@ int CMessengerServer::getCurrentUserCount(void)
 {
 	return m_userManager.getCurrentUserCount();
 }
+
+
+void CMessengerServer::stopServer(void)
+{
+	m_io_service.stop();
+}

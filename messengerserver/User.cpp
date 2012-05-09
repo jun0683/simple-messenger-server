@@ -108,11 +108,20 @@ void CUser::login( const wmObject& obj )
 		sendPacket(writeStr);
 
 		tcout << writeStr << endl;
-		tcout << L"로그인 " << DBMgr->userLogin(m_userInfo->userID) << endl;
+		if (DBMgr->userLogin(m_userInfo->userID))
+		{
+			tcout << L"로그인 " << L"성공" << endl;
+
+		} 
+		else
+		{
+			tcout << L"로그인 " << L"실패" << endl;
+
+		}
 	}
 	else
 	{
-		tcout << L"로그인 실패" << endl;
+		tcout << L"입력된 정보가 잘못 되었습니다" << endl;
 		m_userManager.leaveUser(shared_from_this());
 	}
 }

@@ -11,5 +11,6 @@ public:
 	int getCurrentUserCount();
 private:
 	set<IUser_Ptr> m_users;
+	boost::mutex m_mutex;
 };
 

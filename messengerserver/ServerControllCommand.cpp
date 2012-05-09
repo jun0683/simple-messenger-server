@@ -1,19 +1,19 @@
 #include "StdAfx.h"
-#include "ServerCommand.h"
+#include "ServerControllCommand.h"
 
 
-CServerCommand::CServerCommand(boost::asio::io_service& io,MessengerServer_Ptr messengerServer)
+CServerControllCommand::CServerControllCommand(boost::asio::io_service& io,MessengerServer_Ptr messengerServer)
 	:m_io_service(io),m_messengerServer(messengerServer)
 {
 
 }
 
 
-CServerCommand::~CServerCommand(void)
+CServerControllCommand::~CServerControllCommand(void)
 {
 }
 
-void CServerCommand::operator()()
+void CServerControllCommand::operator()()
 {
 	string inputCommand;
 
@@ -21,12 +21,12 @@ void CServerCommand::operator()()
 	{
 		std::cout <<">>> ";
 		std::getline(std::cin, inputCommand);
-		if (!getCommand(inputCommand)->run(inputCommand,m_io_service,m_messengerServer))
+		if (!getCommand(inputCommand)->run(m_messengerServer))
 			break;		
 	}
 }
 
-ICommand_Ptr CServerCommand::getCommand(string &command)
+ICommand_Ptr CServerControllCommand::getCommand(string &command)
 {
 	if (command == "exit")
 	{

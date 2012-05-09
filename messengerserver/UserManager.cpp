@@ -5,12 +5,14 @@
 
 void CUserManager::joinUser(IUser_Ptr user)
 {
+	boost::lock_guard<boost::mutex> lock(m_mutex);
 	m_users.insert(user);
 }
 
 
 void CUserManager::leaveUser(IUser_Ptr user)
 {
+	boost::lock_guard<boost::mutex> lock(m_mutex);
 	m_users.erase(user);
 }
 

@@ -18,6 +18,7 @@ private:
 	CUserManager m_userManager;
 public:
 	int		getCurrentUserCount(void);
+	void	stopServer(void);
 };
 
 typedef boost::shared_ptr<CMessengerServer> MessengerServer_Ptr;
