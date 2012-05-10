@@ -12,5 +12,7 @@ public:
 private:
 	set<IUser_Ptr> m_users;
 	boost::mutex m_mutex;
+public:
+	void leaveUser(int userID);
 };
 

@@ -13,7 +13,6 @@
 
 #include "utf8.h"
 
-
 using namespace dtl;
 using namespace std;
 using boost::asio::ip::tcp;

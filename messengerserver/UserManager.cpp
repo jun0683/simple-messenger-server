@@ -20,3 +20,10 @@ int CUserManager::getCurrentUserCount()
 {
 	return m_users.size();
 }
+
+
+void CUserManager::leaveUser(int userID)
+{
+	boost::lock_guard<boost::mutex> lock(m_mutex);
+	//m_users.find()
+}

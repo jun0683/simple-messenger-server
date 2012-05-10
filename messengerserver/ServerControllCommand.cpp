@@ -21,8 +21,12 @@ void CServerControllCommand::operator()()
 	{
 		std::cout <<">>> ";
 		std::getline(std::cin, inputCommand);
-		if (!getCommand(inputCommand)->run(m_messengerServer))
-			break;		
+		if (ICommand_Ptr command = getCommand(inputCommand))
+		{
+			if (!command->run(m_messengerServer))
+				break;
+		}
+			
 	}
 }
 

@@ -106,18 +106,19 @@ void CUser::login( const wmObject& obj )
 		string writeStr = write(obj,raw_utf8);
 		
 		sendPacket(writeStr);
+		tcout << L"write str: " << writeStr << endl;
 
-		tcout << writeStr << endl;
+		if(DBMgr->isUserLogin(m_userInfo->userID))
+		{
+			m_userManager.leaveUser(m_userInfo->userID);
+			DBMgr->userLogout(m_userInfo->userID);
+		}
+		
 		if (DBMgr->userLogin(m_userInfo->userID))
-		{
 			tcout << L"로그인 " << L"성공" << endl;
-
-		} 
 		else
-		{
 			tcout << L"로그인 " << L"실패" << endl;
 
-		}
 	}
 	else
 	{
