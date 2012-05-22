@@ -30,6 +30,8 @@ public:
 	void sendPacket(const string& packet );
 
 	void makeWriteBuffer(const string &writeStr );
+	virtual void setUserID(int userID);
+	virtual int getUserID();
 
 private:
 	boost::asio::ip::tcp::socket m_socket;

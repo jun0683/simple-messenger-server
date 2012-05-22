@@ -25,5 +25,6 @@ int CUserManager::getCurrentUserCount()
 void CUserManager::leaveUser(int userID)
 {
 	boost::lock_guard<boost::mutex> lock(m_mutex);
-	//m_users.find()
+	//auto user = m_users.find(userID)
+	//m_users.erase(user);
 }

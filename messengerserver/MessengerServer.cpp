@@ -33,8 +33,25 @@ void CMessengerServer::accept(User_Ptr user,const boost::system::error_code& err
 void CMessengerServer::newUserAccept(void)
 {
 	User_Ptr new_user(new CUser(m_io_service, m_userManager));
-	m_acceptor.async_accept(new_user->socket(),
-		boost::bind(&CMessengerServer::accept, this, new_user,boost::asio::placeholders::error));
+	/*m_acceptor.async_accept(new_user->socket(),
+		boost::bind(&CMessengerServer::accept, this, new_user,boost::asio::placeholders::error));*/
+	
+	//new_user는 copy 하면서 count++ 이 됨 
+	m_acceptor.async_accept(new_user->socket(),[=](const boost::system::error_code& error)
+	{
+		if (!error)
+		{
+			new_user->start();
+			newUserAccept();
+			std::string remote_ip = new_user->socket().remote_endpoint().address().to_string();
+			unsigned short remote_port = new_user->socket().remote_endpoint().port();
+			cout << "Client connected : " << remote_ip.c_str() << " : " << remote_port << endl;
+		}
+		else
+		{
+			tcout << "error : " << error.message() << " , " << error.value() << endl;
+		}
+	});
 }
 
 
