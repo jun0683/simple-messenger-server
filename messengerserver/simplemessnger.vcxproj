@@ -90,6 +90,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>json_spirit/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,7 +158,7 @@
     <ClCompile Include="MessengerServer.cpp" />
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="IUser.cpp" />
-    <ClCompile Include="ServerCommand.cpp" />
+    <ClCompile Include="ServerControllCommand.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -179,7 +180,7 @@
     <ClInclude Include="MessengerServer.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="IUser.h" />
-    <ClInclude Include="ServerCommand.h" />
+    <ClInclude Include="ServerControllCommand.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="testDBCode.h" />
     <ClInclude Include="Timer.h" />

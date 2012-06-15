@@ -2,7 +2,7 @@
 
 #include "testDBCode.h"
 #include "MessengerServer.h"
-#include "ServerCommand.h"
+#include "ServerControllCommand.h"
 
 
 int PORT = 50000;
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 		MessengerServer_Ptr server(new CMessengerServer(io_service,endpoint));
 		serverArray.push_back(server);
 
-		CServerCommand serverCommand(io_service,server);
+		CServerControllCommand serverCommand(io_service,server);
 		boost::thread inputThread(serverCommand);
 
 		io_service.run();

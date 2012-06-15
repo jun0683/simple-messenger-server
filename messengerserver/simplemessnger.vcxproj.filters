@@ -57,10 +57,10 @@
     <ClCompile Include="IUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ServerCommand.cpp">
+    <ClCompile Include="ICommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ICommand.cpp">
+    <ClCompile Include="ServerControllCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,10 +125,10 @@
     <ClInclude Include="utf8\unchecked.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ServerCommand.h">
+    <ClInclude Include="ICommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ICommand.h">
+    <ClInclude Include="ServerControllCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

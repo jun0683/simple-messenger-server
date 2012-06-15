@@ -23,13 +23,12 @@ CUser::CUser(boost::asio::io_service& io_service,CUserManager &userManager)
 
 
 CUser::~CUser(void)
-{
+ {
+
 }
 
 void CUser::start()
 {
-	m_userManager.joinUser(shared_from_this());
-
 	readHeader();
 }
 
@@ -53,7 +52,7 @@ void CUser::handleReadHeader(const boost::system::error_code& error)
 	}
 	else
 	{
-		m_userManager.leaveUser(shared_from_this());
+		//m_userManager.leaveUser(shared_from_this());
 	}
 }
 
@@ -69,7 +68,7 @@ void CUser::handleReadBody(const boost::system::error_code& error)
 	}
 	else
 	{
-		m_userManager.leaveUser(shared_from_this());
+		//m_userManager.leaveUser(shared_from_this());
 	}
 }
 
@@ -106,14 +105,27 @@ void CUser::login( const wmObject& obj )
 		string writeStr = write(obj,raw_utf8);
 		
 		sendPacket(writeStr);
+		tcout << L"write str: " << writeStr << endl;
 
-		tcout << writeStr << endl;
-		tcout << L"로그인 " << DBMgr->userLogin(m_userInfo->userID) << endl;
+		if(DBMgr->isUserLogin(m_userInfo->userID))
+		{
+			//m_userManager.leaveUser(m_userInfo->userID);
+			DBMgr->userLogout(m_userInfo->userID);
+		}
+		
+		if (DBMgr->userLogin(m_userInfo->userID))
+		{
+			//m_userManager.joinUser(shared_from_this());
+			tcout << L"로그인 " << L"성공" << endl;
+		}
+		else
+			tcout << L"로그인 " << L"실패" << endl;
+
 	}
 	else
 	{
-		tcout << L"로그인 실패" << endl;
-		m_userManager.leaveUser(shared_from_this());
+		tcout << L"입력된 정보가 잘못 되었습니다" << endl;
+		//m_userManager.leaveUser(shared_from_this());
 	}
 }
 
@@ -141,4 +153,15 @@ void CUser::friendList()
 	{
 		tcout << userinfo->userID << L" " << userinfo->loginID << L" " << userinfo->pw << L" " << userinfo->userName  << endl;
 	});
+}
+
+
+void CUser::setUserID(int userID)
+{
+
+}
+
+int CUser::getUserID()
+{
+	return 0;
 }

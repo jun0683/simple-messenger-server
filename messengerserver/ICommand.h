@@ -7,14 +7,14 @@ class ICommand
 public:
 	ICommand(void);
 	~ICommand(void);
-	virtual bool run(string &command,boost::asio::io_service& io,MessengerServer_Ptr server) = 0;
+	virtual bool run(MessengerServer_Ptr server) = 0;
 };
 
 
 class CNullCommand : public ICommand
 {
 public:
-	virtual bool run(string &command,boost::asio::io_service& io,MessengerServer_Ptr server)
+	virtual bool run(MessengerServer_Ptr server)
 	{
 		return true;
 	};
@@ -24,7 +24,7 @@ public:
 class CStatusComannd: public ICommand
 {
 public:
-	virtual bool run(string &command,boost::asio::io_service& io,MessengerServer_Ptr server)
+	virtual bool run(MessengerServer_Ptr server)
 	{
 		tcout << "current User : " << server->getCurrentUserCount() << endl;
 		return true;
@@ -34,9 +34,9 @@ public:
 class CExitCommand : public ICommand
 {
 public:
-	virtual bool run(string &command,boost::asio::io_service& io,MessengerServer_Ptr server)
+	virtual bool run(MessengerServer_Ptr server)
 	{
-		io.stop();
+		server->stopServer();
 		return false;
 	}
 };

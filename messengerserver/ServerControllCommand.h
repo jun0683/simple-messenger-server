@@ -3,11 +3,11 @@
 #include "MessengerServer.h"
 #include "ICommand.h"
 
-class CServerCommand
+class CServerControllCommand
 {
 public:
-	CServerCommand(boost::asio::io_service& io,MessengerServer_Ptr messengerServer);
-	~CServerCommand(void);
+	CServerControllCommand(boost::asio::io_service& io,MessengerServer_Ptr messengerServer);
+	~CServerControllCommand(void);
 	void operator()();
 	ICommand_Ptr getCommand(string &command);
 private:
