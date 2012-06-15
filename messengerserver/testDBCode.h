@@ -1,28 +1,28 @@
-#include "Timer.h"
+ï»¿#include "Timer.h"
 #include "DBManager.h"
 
 void dbtest();
 
-//À¯Àú
+//ìœ ì €
 void testuserInfo(CDBManager &dbmanager)
 {
 	FuctionTimer timer;
 	CUserInfo userinfo;
 
 	if(dbmanager.getUserInfo(L"test@test.com",L"1234",userinfo))
-		tcout << L"ÀÖ´Â À¯ÀúÀÔ´Ï´Ù userid : " << userinfo.userID  << endl;
+		tcout << L"ìžˆëŠ” ìœ ì €ìž…ë‹ˆë‹¤ userid : " << userinfo.userID  << endl;
 	else
-		tcout << L"¾ø´Â À¯ÀúÀÔ´Ï´Ù." <<endl;
+		tcout << L"ì—†ëŠ” ìœ ì €ìž…ë‹ˆë‹¤." <<endl;
 	
 	if(dbmanager.getUserInfo(L"test10@test.com",L"1234",userinfo))
-		tcout << "ÀÖ´Â À¯ÀúÀÔ´Ï´Ù userid : L" << userinfo.userID  << endl;
+		tcout << "ìžˆëŠ” ìœ ì €ìž…ë‹ˆë‹¤ userid : L" << userinfo.userID  << endl;
 	else
-		tcout << L"¾ø´Â À¯ÀúÀÔ´Ï´Ù." <<endl;
+		tcout << L"ì—†ëŠ” ìœ ì €ìž…ë‹ˆë‹¤." <<endl;
 
 	if(dbmanager.getUserInfo(L"test3@test.com",L"1234",userinfo))
-		tcout << L"ÀÖ´Â À¯ÀúÀÔ´Ï´Ù userid : " << userinfo.userID  << endl;
+		tcout << L"ìžˆëŠ” ìœ ì €ìž…ë‹ˆë‹¤ userid : " << userinfo.userID  << endl;
 	else
-		tcout << L"¾ø´Â À¯ÀúÀÔ´Ï´Ù." <<endl;
+		tcout << L"ì—†ëŠ” ìœ ì €ìž…ë‹ˆë‹¤." <<endl;
 
 }
 
@@ -34,21 +34,21 @@ void testUserID(CDBManager &dbmanager)
 
 	loginID = L"test@test.com";
 	if(dbmanager.getUserID(loginID,userID))
-		tcout << L"loginID : " << loginID << L"´Â ÀÖ´Â À¯ÀúÀÔ´Ï´Ù userid : " << userID  << endl;
+		tcout << L"loginID : " << loginID << L"ëŠ” ìžˆëŠ” ìœ ì €ìž…ë‹ˆë‹¤ userid : " << userID  << endl;
 	else
-		tcout << L"loginID : " << loginID << L"´Â ¾ø´Â À¯ÀúÀÔ´Ï´Ù." <<endl;
+		tcout << L"loginID : " << loginID << L"ëŠ” ì—†ëŠ” ìœ ì €ìž…ë‹ˆë‹¤." <<endl;
 
 	loginID = L"test11@test.com";
 	if(dbmanager.getUserID(loginID,userID))
-		tcout << L"loginID : " << loginID << L"´Â ÀÖ´Â À¯ÀúÀÔ´Ï´Ù userid : " << userID  << endl;
+		tcout << L"loginID : " << loginID << L"ëŠ” ìžˆëŠ” ìœ ì €ìž…ë‹ˆë‹¤ userid : " << userID  << endl;
 	else
-		tcout << L"loginID : " << loginID << L"´Â ¾ø´Â À¯ÀúÀÔ´Ï´Ù." <<endl;
+		tcout << L"loginID : " << loginID << L"ëŠ” ì—†ëŠ” ìœ ì €ìž…ë‹ˆë‹¤." <<endl;
 	
 	loginID = L"test3@test.com";
 	if(dbmanager.getUserID(loginID,userID))
-		tcout << L"loginID : " << loginID << L"´Â ÀÖ´Â À¯ÀúÀÔ´Ï´Ù userid : " << userID  << endl;
+		tcout << L"loginID : " << loginID << L"ëŠ” ìžˆëŠ” ìœ ì €ìž…ë‹ˆë‹¤ userid : " << userID  << endl;
 	else
-		tcout << L"loginID : " << loginID << L"´Â ¾ø´Â À¯ÀúÀÔ´Ï´Ù." <<endl;
+		tcout << L"loginID : " << loginID << L"ëŠ” ì—†ëŠ” ìœ ì €ìž…ë‹ˆë‹¤." <<endl;
 }
 
 void testUserLogState(CDBManager &dbmanager)
@@ -87,10 +87,10 @@ void testRegistNewUser(CDBManager &dbmanager)
 
 	if(dbmanager.registerNewUser(testUserLoginID,testUserLoginPw,testUserName))
 	{
-		tcout << L"µî·Ï ½ÇÆÐ" << endl;
+		tcout << L"ë“±ë¡ ì‹¤íŒ¨" << endl;
 	}
 	else
-		tcout << L"µî·Ï ¼º°ø" << endl;
+		tcout << L"ë“±ë¡ ì„±ê³µ" << endl;
 }
 
 void testUserWithdraw(CDBManager &dbmanager)
@@ -100,9 +100,9 @@ void testUserWithdraw(CDBManager &dbmanager)
 	tstring testUserLoginID = L"test113@test.com";
 	tstring testUserLoginPw = L"test1";
 	if (dbmanager.withdrawUser(testUserLoginID,testUserLoginPw))
-		tcout << L"Å»Åð ¼º°ø" << endl;
+		tcout << L"íƒˆí‡´ ì„±ê³µ" << endl;
 	else
-		tcout << L"Å»Åð ½ÇÆÐ" << endl;
+		tcout << L"íƒˆí‡´ ì‹¤íŒ¨" << endl;
 }
 
 void testisValidUser(CDBManager &dbmanater)
@@ -110,9 +110,9 @@ void testisValidUser(CDBManager &dbmanater)
 	FuctionTimer timer;
 	tstring testUserLoginID = L"test100@test.com";
 	if(dbmanater.isValidUser(testUserLoginID))
-		tcout << L"ÀÖÀ½" << endl;
+		tcout << L"ìžˆìŒ" << endl;
 	else
-		tcout << L"¾øÀ½" << endl;
+		tcout << L"ì—†ìŒ" << endl;
 }
 
 
@@ -123,12 +123,12 @@ void testChageUserInfo(CDBManager &dbmanager)
 	tstring testUserLoginPw = L"test1";
 	tstring testUserName = L"test1";
 	if(dbmanager.changeUserInfo(testUserLoginID,testUserLoginPw,testUserName))
-		tcout << L"¹Ù²ñ" << endl;
+		tcout << L"ë°”ë€œ" << endl;
 	else
-		tcout << L"¾È¹Ù²ñ" << endl;
+		tcout << L"ì•ˆë°”ë€œ" << endl;
 }
 
-//·Î±×ÀÎ
+//ë¡œê·¸ì¸
 void testUserFriendsLoginState(CDBManager &dbmanager)
 {
 	userinfos_ptr friends = dbmanager.userFriends(1);
@@ -144,7 +144,7 @@ void testUserFriendsLoginState(CDBManager &dbmanager)
 
 }
 
-//Ã¤ÆÃ
+//ì±„íŒ…
 void testCreatechattingRoom(CDBManager &dbmanager)
 {
 	int testUserID = 1;
@@ -158,7 +158,7 @@ void testCreatechattingRoom(CDBManager &dbmanager)
 	});
 	
 	int chattingroomnumber = dbmanager.makeChattingRoom(testUserID,friendsIDs);
-	tcout<< L"Ã¤ÆÃ¹æ ¹øÈ£ :" << chattingroomnumber << endl;
+	tcout<< L"ì±„íŒ…ë°© ë²ˆí˜¸ :" << chattingroomnumber << endl;
 
 	BOOST_FOREACH(int userid,friendsIDs)
 	{
@@ -172,11 +172,11 @@ void testSendChattingMessage(CDBManager &dbmanager)
 	FuctionTimer timer;
 	int testUserID1 = 1,testUserID2 = 6;
 	int roomNumber = 1;
-	tstring chattingmessage = L"¹Ý°©½À´Ï´ç";
+	tstring chattingmessage = L"ë°˜ê°‘ìŠµë‹ˆë‹¹";
 	dbmanager.sendChattingMessage(roomNumber,testUserID1,chattingmessage);
 }
 
-//Ä£±¸
+//ì¹œêµ¬
 
 void testAddfriend(CDBManager &dbmanager)
 {
@@ -185,9 +185,9 @@ void testAddfriend(CDBManager &dbmanager)
 	int friendID = 14;
 
 	if (dbmanager.addFriendRequest(testuserID,friendID))
-		tcout << L"Ä£±¸ Ãß°¡ ¿äÃ» ¼º°ø" << endl;
+		tcout << L"ì¹œêµ¬ ì¶”ê°€ ìš”ì²­ ì„±ê³µ" << endl;
 	else
-		tcout << L"Ä£±¸ Ãß°¡ ¿äÃ» ½ÇÆÐ" << endl;
+		tcout << L"ì¹œêµ¬ ì¶”ê°€ ìš”ì²­ ì‹¤íŒ¨" << endl;
 
 	std::vector<int> friendRequsts;
 	int myusrID = friendID;
@@ -195,11 +195,11 @@ void testAddfriend(CDBManager &dbmanager)
 	{
 		std::for_each(friendRequsts.begin(),friendRequsts.end(),[=,&dbmanager](int friendRequstID)
 		{
-			tcout << L"³» ¾ÆÀÌµÚ : " << myusrID << L" Ä£±¸ Ãß°¡ ¿äÃ» ¾ÆÀÌµÚ : " << friendRequstID << endl;
+			tcout << L"ë‚´ ì•„ì´ë’¤ : " << myusrID << L" ì¹œêµ¬ ì¶”ê°€ ìš”ì²­ ì•„ì´ë’¤ : " << friendRequstID << endl;
 			if (dbmanager.addFriendRespond(myusrID,friendRequstID,true))
-				tcout << L"Ä£±¸ Ãß°¡ ¿äÃ» Çã¶ô ¼º°ø" << endl;
+				tcout << L"ì¹œêµ¬ ì¶”ê°€ ìš”ì²­ í—ˆë½ ì„±ê³µ" << endl;
 			else
-				tcout << L"Ä£±¸ Ãß°¡ ¿äÃ» Çã¶ô ½ÇÆÐ" << endl;
+				tcout << L"ì¹œêµ¬ ì¶”ê°€ ìš”ì²­ í—ˆë½ ì‹¤íŒ¨" << endl;
 		});
 	}
 }
@@ -210,14 +210,14 @@ void testfindUserID(CDBManager &dbmanager)
 	tstring testUserLoginID = L"test100@test.com";
 	int findUserID = 0;
 	if(dbmanager.findUserID(testUserLoginID,findUserID))
-		tcout << L"Ã£´Â À¯Àú ¾ÆÀÌµð : " << testUserLoginID << L"ÀÖÀ½ ¾ÆÀÌµð : " << findUserID << endl;
+		tcout << L"ì°¾ëŠ” ìœ ì € ì•„ì´ë”” : " << testUserLoginID << L"ìžˆìŒ ì•„ì´ë”” : " << findUserID << endl;
 	else
-		tcout << L"Ã£´Â À¯Àú ¾ÆÀÌµð : " << testUserLoginID << L"¾øÀ½" << endl;
+		tcout << L"ì°¾ëŠ” ìœ ì € ì•„ì´ë”” : " << testUserLoginID << L"ì—†ìŒ" << endl;
 	testUserLoginID = L"test@test.com";
 	if(dbmanager.findUserID(testUserLoginID,findUserID))
-		tcout << L"Ã£´Â À¯Àú ¾ÆÀÌµð : " << testUserLoginID << L"ÀÖÀ½ ¾ÆÀÌµð : " << findUserID << endl;
+		tcout << L"ì°¾ëŠ” ìœ ì € ì•„ì´ë”” : " << testUserLoginID << L"ìžˆìŒ ì•„ì´ë”” : " << findUserID << endl;
 	else
-		tcout << L"Ã£´Â À¯Àú ¾ÆÀÌµð : " << testUserLoginID << L"¾øÀ½" << endl;
+		tcout << L"ì°¾ëŠ” ìœ ì € ì•„ì´ë”” : " << testUserLoginID << L"ì—†ìŒ" << endl;
 
 }
 
@@ -227,9 +227,9 @@ void testdelFriend(CDBManager &dbmanager)
 	int testuserID = 1;
 	int testFriendID = 14;
 	if(dbmanager.delToFriendsWithEachOther(testuserID,testFriendID))
-		tcout << L"Ä£±¸ »èÁ¦ ¼º°ø" << endl;
+		tcout << L"ì¹œêµ¬ ì‚­ì œ ì„±ê³µ" << endl;
 	else
-		tcout << L"Ä£±¸ »èÁ¦ ½ÇÆÐ" << endl;
+		tcout << L"ì¹œêµ¬ ì‚­ì œ ì‹¤íŒ¨" << endl;
 }
 
 void testMessage(CDBManager &dbmanager ) 
@@ -237,20 +237,20 @@ void testMessage(CDBManager &dbmanager )
 	FuctionTimer timer;
 	int testFromUserID = 1;
 	int testToUserID = 7;
-	tstring message = L"ÇÏÀÌ ¹Ý°©±á hi~";
+	tstring message = L"í•˜ì´ ë°˜ê°‘ê¸” hi~";
 	int messageID = 0;
 	if (dbmanager.sendMessage(testFromUserID,testToUserID,message,messageID))
-		tcout << L"ÂÊÁö µî·Ï ¼º°ø messageID : " << messageID << endl;
+		tcout << L"ìª½ì§€ ë“±ë¡ ì„±ê³µ messageID : " << messageID << endl;
 	else
-		tcout << L"ÂÊÁö µî·Ï ½ÇÆÐ" << endl;
+		tcout << L"ìª½ì§€ ë“±ë¡ ì‹¤íŒ¨" << endl;
 
 	if (dbmanager.deliveryedMessage(messageID))
 	{
-		tcout << L"ÂÊÁö Àü¼Û ¼º°ø messageID : " << messageID << endl;
+		tcout << L"ìª½ì§€ ì „ì†¡ ì„±ê³µ messageID : " << messageID << endl;
 	} 
 	else
 	{
-		tcout << L"ÂÊÁö ¾ÆÀÌµÚ ¿À·ù" << endl;
+		tcout << L"ìª½ì§€ ì•„ì´ë’¤ ì˜¤ë¥˜" << endl;
 	}
 
 }

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "MessengerServer.h"
 #include "ICommand.h"

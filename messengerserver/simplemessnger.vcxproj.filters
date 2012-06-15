@@ -95,9 +95,6 @@
     <ClInclude Include="testDBCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MessengerErorrCode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MessengerServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "User.h"
 #include "UserInfo.h"
 #include "DBManager.h"
@@ -116,15 +116,15 @@ void CUser::login( const wmObject& obj )
 		if (DBMgr->userLogin(m_userInfo->userID))
 		{
 			//m_userManager.joinUser(shared_from_this());
-			tcout << L"·Î±×ÀÎ " << L"¼º°ø" << endl;
+			tcout << L"ë¡œê·¸ì¸ " << L"ì„±ê³µ" << endl;
 		}
 		else
-			tcout << L"·Î±×ÀÎ " << L"½ÇÆÐ" << endl;
+			tcout << L"ë¡œê·¸ì¸ " << L"ì‹¤íŒ¨" << endl;
 
 	}
 	else
 	{
-		tcout << L"ÀÔ·ÂµÈ Á¤º¸°¡ Àß¸ø µÇ¾ú½À´Ï´Ù" << endl;
+		tcout << L"ìž…ë ¥ëœ ì •ë³´ê°€ ìž˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤" << endl;
 		//m_userManager.leaveUser(shared_from_this());
 	}
 }

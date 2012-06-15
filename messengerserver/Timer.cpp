@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "Timer.h"
 
 
@@ -15,7 +15,7 @@ CTimer::~CTimer(void)
 void CTimer::startTimer(void)
 {
 	tcout << endl;
-	tcout << L"ÇÔ¼ö ½ÃÀÛ" << endl;
+	tcout << L"í•¨ìˆ˜ ì‹œìž‘" << endl;
 	StartTime = boost::chrono::system_clock::now();
 }
 
@@ -24,6 +24,6 @@ void CTimer::endTimer(void)
 {
 	EndTime = boost::chrono::system_clock::now();
 	mill = boost::chrono::duration_cast<boost::chrono::milliseconds>(EndTime - StartTime);
-	tcout << L"°É¸° ½Ã°£ : " << mill.count() << L" milliseconds" << endl;
+	tcout << L"ê±¸ë¦° ì‹œê°„ : " << mill.count() << L" milliseconds" << endl;
 	StartTime = EndTime;
 }

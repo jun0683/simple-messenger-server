@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 
 #include "UserInfo.h"
 //////////////////////////////////////////////////////////////////////////
-/// DB Procedure Call ÇØÁÜ
-/// ½Ì±ÛÅæ °´Ã¼
+/// DB Procedure Call í•´ì¤Œ
+/// ì‹±ê¸€í†¤ ê°ì²´
 //////////////////////////////////////////////////////////////////////////
 class CDBManager
 {
@@ -32,55 +32,55 @@ public:
 private:
 	/// DB Connect
 	void			dbLogin(void);
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	bool			userLog(int userID,bool state);
 
 public:
 	//////////////////////////////////////////////////////////////////////////
-	/// À¯Àú
+	/// ìœ ì €
 	//////////////////////////////////////////////////////////////////////////
 
-	/// À¯Àú Á¤º¸ ¾ò±â
+	/// ìœ ì € ì •ë³´ ì–»ê¸°
 	bool			getUserInfo(tstring loginID, tstring pw,__out CUserInfo &userInfo);
-	/// À¯Àú ID ¾ò±â
+	/// ìœ ì € ID ì–»ê¸°
 	bool			getUserID( tstring &loginID,__out int &userID );
-	/// À¯Àú È®ÀÎ
+	/// ìœ ì € í™•ì¸
 	bool			isValidUser(tstring &NewUserLoginID);
-	/// À¯Àú Á¤º¸ º¯°æ
+	/// ìœ ì € ì •ë³´ ë³€ê²½
 	bool			changeUserInfo(tstring &userID,tstring &newPassword,tstring &newName);
-	/// À¯Àú µî·Ï
+	/// ìœ ì € ë“±ë¡
 	bool			registerNewUser(tstring &NewUserLoginID,tstring &NewUserLoginPW, tstring &NewUserName);
-	/// À¯Àú Å»Åğ
+	/// ìœ ì € íƒˆí‡´
 	bool			withdrawUser( tstring &userLoginID, tstring &userLoginPw );
 
 	//////////////////////////////////////////////////////////////////////////
-	/// ·Î±×ÀÎ
+	/// ë¡œê·¸ì¸
 	//////////////////////////////////////////////////////////////////////////
 
-	/// ·Î±×ÀÎ
+	/// ë¡œê·¸ì¸
 	bool			userLogin(int userID);
-	/// ·Î±×¾Æ¿ô
+	/// ë¡œê·¸ì•„ì›ƒ
 	bool			userLogout(int userID);
-	/// ·Î±×ÀÎ »óÅÂ È®ÀÎ
+	/// ë¡œê·¸ì¸ ìƒíƒœ í™•ì¸
 	bool			isUserLogin(int userID);
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Ã¤ÆÃ
+	/// ì±„íŒ…
 	//////////////////////////////////////////////////////////////////////////
 
-	/// Ã¤ÆÃ·ë ¸¸µë
+	/// ì±„íŒ…ë£¸ ë§Œë“¬
 	int				makeChattingRoom(int userID,vector<int> friendIDs);
-	/// Ã¤ÆÃ·ë ÀÔÀå
+	/// ì±„íŒ…ë£¸ ì…ì¥
 	bool			inviteChattingRoom(int roomNumber, int invitUserID);
-	/// Ã¤ÆÃ·ë ÅğÀå
+	/// ì±„íŒ…ë£¸ í‡´ì¥
 	bool			leaveChattingRoom(int roomNumber, int leaveUserID);
-	/// Ã¤ÆÃ·ë »óÅÂ
+	/// ì±„íŒ…ë£¸ ìƒíƒœ
 	bool			ChattingRoomState(int roomNumber, int UserID,bool state);
-	/// ¸Ş½ÃÁö Àü¼Û
+	/// ë©”ì‹œì§€ ì „ì†¡
 	bool			sendChattingMessage(int roomNumber,int UserID,tstring &chattingMessage);
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Ä£±¸
+	/// ì¹œêµ¬
 	//////////////////////////////////////////////////////////////////////////
 	userinfos_ptr	userFriends(int userID);
 	bool			addFriendRequest( int userID, int friendID );
@@ -95,12 +95,12 @@ public:
 
 
 	//////////////////////////////////////////////////////////////////////////
-	/// ÂÊÁö
+	/// ìª½ì§€
 	//////////////////////////////////////////////////////////////////////////
 
-	///ÂÊÁö Àü¼Û
+	///ìª½ì§€ ì „ì†¡
 	bool			sendMessage( int fromUserID, int toUserID, tstring message, int& messageID );
-	///ÂÊÁö Àü¼Û È®ÀÎ
+	///ìª½ì§€ ì „ì†¡ í™•ì¸
 	bool			deliveryedMessage( int messageID );
 };
 
