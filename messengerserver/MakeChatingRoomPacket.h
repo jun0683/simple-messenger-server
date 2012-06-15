@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "packet.h"
 class CMakeChatingRoomPacket :
 	public CPacket

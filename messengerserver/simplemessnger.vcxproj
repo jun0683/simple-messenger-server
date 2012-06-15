@@ -176,7 +176,6 @@
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="LoginPacket.h" />
     <ClInclude Include="MakeChatingRoomPacket.h" />
-    <ClInclude Include="MessengerErorrCode.h" />
     <ClInclude Include="MessengerServer.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="IUser.h" />

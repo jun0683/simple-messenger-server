@@ -1,4 +1,4 @@
-#ifndef JSON_SPIRIT_VALUE
+﻿#ifndef JSON_SPIRIT_VALUE
 #define JSON_SPIRIT_VALUE
 
 //          Copyright John W. Wilkinson 2007 - 2011

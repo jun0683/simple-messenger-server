@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MessengerServer.h"
 
 
@@ -36,7 +36,7 @@ void CMessengerServer::newUserAccept(void)
 	/*m_acceptor.async_accept(new_user->socket(),
 		boost::bind(&CMessengerServer::accept, this, new_user,boost::asio::placeholders::error));*/
 	
-	//new_user´Â copy ÇÏ¸é¼­ count++ ÀÌ µÊ 
+	//new_userëŠ” copy í•˜ë©´ì„œ count++ ì´ ë¨ 
 	m_acceptor.async_accept(new_user->socket(),[=](const boost::system::error_code& error)
 	{
 		if (!error)
