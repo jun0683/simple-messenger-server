@@ -1,0 +1,17 @@
+sql param은 어떻게 바인딩되는가
+
+*print_it = OBJ();	
+	DB_sql_iterator<DataObj, ParamObj> &operator=(const DataObj &dataObj)
+		DB_iterator::open
+			DB_iterator::MakeBindings
+				stmt.BindParam(BoundIO &param)
+					SQLBindParameter(BoundIO &param)
+						param.
+
+내가 만든 params::operator() 에서
+<<, >>,== 연산자 가 어떻게 호출 되는가
+
+BPAWrap::operator()(BoundIOs &boundIOs, DataObj &rowbuf) 
+	Impl0::invoke(BoundIOs &boundIOs, DataObj &rowbuf)	
+		BoundIOs::operator[]
+			insert()
